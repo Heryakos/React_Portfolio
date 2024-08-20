@@ -10,7 +10,7 @@ const computer = useGLTF ('./desktop_pc/scene.gltf')
 
   return (
     <mesh>
-      <hemisphereLight intensity={0.15} 
+      <hemisphereLight intensity={1} 
       groundColor="black"/>
       <pointLight intensity= {1}/>
       <spotLight 
@@ -46,6 +46,7 @@ const ComputersCanvas = () => {
     <Canvas 
     frameloop="demand"
     shadows
+    dpr={[1, 2]}
     camera={{position: [20,3,5], fov: 25}}
     gl= {{ preserveDrawingBuffer: true}}
     >
