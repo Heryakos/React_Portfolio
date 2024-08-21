@@ -184,7 +184,7 @@ import {
     {
       name: "Car Rent",
       description:
-        "gamehub",
+        "Web-based platform that allows users to search, book, and manage car rentals from various providers, providing a convenient and efficient solution for transportation needs.",
       tags: [
         {
           name: "react",
@@ -205,7 +205,7 @@ import {
     {
       name: "Job IT",
       description:
-        "oftana",
+        "Web-based platform that allows users to search, book, and manage car rentals from various providers, providing a convenient and efficient solution for transportation needs.",
       tags: [
         {
           name: "react",
@@ -226,23 +226,23 @@ import {
     {
       name: "Trip Guide",
       description:
-        "gamehub",
+        "Web-based platform that allows users to search, book, and manage car rentals from various providers, providing a convenient and efficient solution for transportation needs.",
       tags: [
         {
-          name: "nextjs",
+          name: "React",
           color: "blue-text-gradient",
         },
         {
-          name: "supabase",
+          name: "Chakra UI",
           color: "green-text-gradient",
         },
         {
-          name: "css",
+          name: "Axios API",
           color: "pink-text-gradient",
         },
       ],
       image: tripguide,
-      source_code_link: "https://github.com/",
+      source_code_link: "https://github.com/Heryakos/game-hub.git",
     },
   ];
   
