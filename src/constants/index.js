@@ -24,6 +24,7 @@ import {
     carrent,
     jobit,
     tripguide,
+    game,
     threejs,
   } from "../assets";
   
@@ -199,7 +200,7 @@ import {
           color: "pink-text-gradient",
         },
       ],
-      image: carrent,
+      image: game,
       source_code_link: "https://github.com/",
     },
     {
@@ -220,7 +221,7 @@ import {
           color: "pink-text-gradient",
         },
       ],
-      image: jobit,
+      image: game,
       source_code_link: "https://github.com/",
     },
     {
@@ -241,7 +242,7 @@ import {
           color: "pink-text-gradient",
         },
       ],
-      image: tripguide,
+      image: game,
       source_code_link: "https://github.com/Heryakos/game-hub.git",
     },
   ];
