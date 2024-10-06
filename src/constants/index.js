@@ -157,30 +157,30 @@ import {
   const testimonials = [
     {
       testimonial:
-      "Web-based platform that allows users to search, book, and manage car rentals from various providers, providing a convenient and efficient solution for transportation needs.",
+      "Harry You are so cool",
       
-      name: "Sara Lee",
-      designation: "CFO",
-      company: "XOKA",
-      image: "https://randomuser.me/api/portraits/women/4.jpg",
+      name: "Aminidab Elias",
+      designation: "Graphic Designer",
+      company: "Beta Pixile",
+      image: "",
     },
     {
       testimonial:
-      "Web-based platform that allows users to search, book, and manage car rentals from various providers, providing a convenient and efficient solution for transportation needs.",
+      "Harry you are soo Cool",
 
-      name: "Chris Brown",
-      designation: "COO",
+      name: "Binyam Getachew ",
+      designation: "Coder",
       company: "XOKA",
-      image: "https://randomuser.me/api/portraits/men/5.jpg",
+      image: "",
     },
     {
       testimonial:
-      "Web-based platform that allows users to search, book, and manage car rentals from various providers, providing a convenient and efficient solution for transportation needs.",
+      "Harry You are so cool",
 
-      name: "Lisa Wang",
+      name: "Eyobed Kebede",
       designation: "CTO",
-      company: "XOKA",
-      image: "https://randomuser.me/api/portraits/women/6.jpg",
+      company: "Beta Pixile",
+      image: "",
     },
   ];
   
