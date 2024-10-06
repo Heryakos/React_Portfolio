@@ -16,7 +16,7 @@ className="w-full h-full object-cover rounded-2xl"
 />
 <div className="absolute inset-0 flex justify-end m-3 card-img_hover">
   {/* this where the git hub  or other bage or log image is placed  */}
-  <div onClick={() => window.open (source_code_Link,"_blank")}
+  <div onClick={() => window.open ('google.com')}
     className="black-gradient w-10 h-10 rounded-full flex justify-center items-center cursor-pointer"
     >
     <img src={github} alt="github" 
@@ -30,10 +30,7 @@ className="w-full h-full object-cover rounded-2xl"
   </div>
 </div>
 </div>
-<div className="mt-5">
-<h3>{name}</h3>
-<p>{description}</p>
-</div>
+
 <div className="mt-5">
   <h3 className="text-white font-bold text-[24px]">{name}</h3>
   <p className="mt-2 text-secondary text-[14px]">{description}</p>
