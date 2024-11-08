@@ -33,7 +33,7 @@ import carrent from "./carrent.png";
 import jobit from "./jobit.png";
 import tripguide from "./tripguide.png";
 import game from "./game.png";
-import tictactoa from './tictactoa.png';
+import tictactoa from "./tictactoa.png";
 export {
   Angular,
   logo,
