@@ -26,6 +26,7 @@ import {
     tripguide,
     game,
     threejs,
+    tictactoa,
   } from "../assets";
   
   export const navLinks = [
@@ -186,24 +187,24 @@ import {
   
   const projects = [
     {
-      name: "Car Rent",
+      name: "Tic Tac Toe",
       description:
-        "Web-based platform that allows users to search, book, and manage car rentals from various providers, providing a convenient and efficient solution for transportation needs.",
+        "Developed a unique twist on the classic Tic-Tac-Toe game using React. This version is played on a 5x5 grid, where the winning condition requires aligning four consecutive marks (horizontally, vertically, or diagonally). The project demonstrates key skills in React component management, state handling, and win condition logic in a more complex game board setup.",
       tags: [
         {
           name: "react",
           color: "blue-text-gradient",
         },
         {
-          name: "mongodb",
+          name: "javascript",
           color: "green-text-gradient",
         },
         {
-          name: "tailwind",
+          name: "css",
           color: "pink-text-gradient",
         },
       ],
-      image: game,
+      image: [tictactoa],
       source_code_link: "https://github.com/",
     },
     {

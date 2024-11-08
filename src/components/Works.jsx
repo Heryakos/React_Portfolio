@@ -19,18 +19,18 @@ const ProjectCard = ({
         options={{ max: 45, scale: 1, speed: 450 }}
         className="bg-tertiary p-5 rounded-2xl sm:w-[360px] w-full"
       >
-        <div className="relative w-full h-[230px]">
+        <div className="relative w-full h-[230px] overflow-hidden">
           <img
             src={image}
             alt={image}
-            className="w-full h-full object-cover rounded-2xl"
-          />
+            className="w-full h-full object-cover rounded-2xl transform transition-transform duration-300 ease-in-out hover:scale-110"
+            />
           <div className="absolute inset-0 flex justify-end m-3 card-img_hover">
             {/* this where the git hub  or other emblem or log image is placed  */}
             <div
               onClick={() => window.open("google.com")}
               className="black-gradient w-10 h-10 rounded-full flex justify-center items-center cursor-pointer"
-            >
+              >
               <img
                 src={github}
                 alt="github"
