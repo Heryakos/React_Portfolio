@@ -24,13 +24,13 @@ const ProjectCard = ({
             src={image}
             alt={image}
             className="w-full h-full object-cover rounded-2xl transform transition-transform duration-300 ease-in-out hover:scale-110"
-            />
+          />
           <div className="absolute inset-0 flex justify-end m-3 card-img_hover">
             {/* this where the git hub  or other emblem or log image is placed  */}
             <div
               onClick={() => window.open("google.com")}
               className="black-gradient w-10 h-10 rounded-full flex justify-center items-center cursor-pointer"
-              >
+            >
               <img
                 src={github}
                 alt="github"
@@ -78,18 +78,24 @@ const Works = () => {
           variants={fadeIn("", "", 0.1, 1)}
           className="mt-3 text-secondary text-[17px] max-w-3xl leading-[30px]"
         >
-         <strong>SpaceX Clone</strong> <br/> 
-          A responsive clone of the SpaceX website, built with
-          JavaScript, HTML, CSS, and Bootstrap. This project highlights
-          attention to design details and layout accuracy, closely resembling
-          the original SpaceX site. It’s fully responsive and optimized for
-          desktop and mobile views. 
-          <strong> Game Hub - Gaming Platform </strong> <br/> 
-          A platform forgaming enthusiasts that connects to gaming APIs using Axios to fetch
-          and display game data dynamically. This project demonstrates API
+          <strong>SpaceX Clone</strong> <br />A responsive clone of the SpaceX
+          website, built with JavaScript, HTML, CSS, and Bootstrap. This project
+          highlights attention to design details and layout accuracy, closely
+          resembling the original SpaceX site. It’s fully responsive and
+          optimized for desktop and mobile views.
+          <strong> Game Hub - Gaming Platform </strong> <br />A platform
+          forgaming enthusiasts that connects to gaming APIs using Axios to
+          fetch and display game data dynamically. This project demonstrates API
           integration skills and showcases real-time data handling to provide
           up-to-date game information.
-          
+          <br/>
+          <strong> Tic-Tac-Toe Game (React) </strong> <br />
+          5x5 Grid Interface: Designed and implemented a scalable 5x5 game board
+          for a more challenging gameplay experience. <br/>Flexible Win Condition:
+          Configured the game to recognize a win condition when four in a row
+          are aligned, enhancing traditional gameplay.<br/> Responsive and
+          Interactive UI: Optimized for both desktop and mobile, making it
+          accessible and engaging for players on various devices.
         </motion.p>
       </div>
       <div className="mt-20 flex flex-wrap gap-7">
