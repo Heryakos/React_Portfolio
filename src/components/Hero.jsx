@@ -1,9 +1,20 @@
 import { motion } from "framer-motion"
-import {styles} from '../styles'
-import {ComputersCanvas} from './canvas'
+import { useState, useEffect } from "react"
+import { styles } from '../styles'
+import { ComputersCanvas } from './canvas'
 import { resume } from "../assets"
 
 const Hero = () => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 768px)");
+    setIsMobile(mq.matches);
+    const handler = (e) => setIsMobile(e.matches);
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
+  }, []);
+
   return (
     <section className="relative w-full h-screen mx-auto">
       <div className={`${styles.paddingX} absolute inset-0 top-[120px] max-w-7xl mx-auto flex flex-row items-start gap-5 pointer-events-none z-10`}>
@@ -11,12 +22,12 @@ const Hero = () => {
           <div className="w-5 h-5 rounded-full bg-[#915eff]"/>
           <div className="w-1 sm:h-80 h-40 violet-gradient"/>
         </div>
-        <div className="pointer-events-auto">
+        <div className="pointer-events-auto w-full">
           <h1 className={`${styles.heroHeadText} text-white`}>
-            Hi, I'm <span className="text-[#915eff]">Hiryakos Meles</span> 
+            Hi, I'm <span className="text-[#915eff]">Hiryakos Meles</span>
           </h1>
           <p className={`${styles.heroSubText} mt-2 text-white-100 max-w-2xl`}>
-            Software Developer specializing in enterprise web applications, ERP solutions (Frappe/ERPNext), Python, Angular, & .NET.
+            Software Developer specializing in enterprise web applications, ERP solutions (Frappe/ERPNext), Python, Angular, &amp; .NET.
           </p>
           
           {/* Action Buttons */}
@@ -39,12 +50,26 @@ const Hero = () => {
               Contact Me
             </a>
           </div>
+
+          {/* Mobile-only: Tech badges shown below buttons since no 3D model */}
+          {isMobile && (
+            <div className="mt-10 flex flex-wrap gap-2">
+              {["Angular", ".NET", "Python", "ERPNext", "React", "SQL"].map((tech) => (
+                <span
+                  key={tech}
+                  className="px-3 py-1 text-[12px] font-semibold rounded-full border border-[#915eff]/50 text-[#915eff] bg-[#915eff]/10"
+                >
+                  {tech}
+                </span>
+              ))}
+            </div>
+          )}
         </div>
       </div>
       
-      {/* 3D Canvas or Mobile Fallback */}
-      <div className="w-full h-full absolute inset-0 z-0 flex items-end justify-center md:items-stretch">
-        <ComputersCanvas/>
+      {/* 3D Canvas — null on mobile, full canvas on desktop */}
+      <div className="w-full h-full absolute inset-0 z-0">
+        <ComputersCanvas />
       </div>
 
       {/* Scroll indicator */}
