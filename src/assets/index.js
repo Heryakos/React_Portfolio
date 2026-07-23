@@ -34,6 +34,15 @@ import jobit from "./jobit.png";
 import tripguide from "./tripguide.png";
 import game from "./game.png";
 import tictactoa from "./tictactoa.PNG";
+import resume from "./Hiryakos_Meles_Resume_2026-07-21.pdf";
+import screenshotGameHub from "./Screenshot 2026-07-23 152212.png";
+import screenshot3d from "./Screenshot 2026-07-23 152234.png";
+import screenshotTicTacToe from "./Screenshot 2026-07-23 152335.png";
+import screenshotEcommerce from "./Screenshot 2026-07-23 152418.png";
+import screenshotFhcClinic from "./Screenshot 2026-07-23 152453.png";
+import screenshotFhcModules from "./Screenshot 2026-07-23 152520.png";
+import xokaExperience from "./Hiryakos Experience.pdf";
+
 export {
   Angular,
   logo,
@@ -67,4 +76,14 @@ export {
   game,
   tictactoa,
   sql,
+  resume,
+  screenshotGameHub,
+  screenshot3d,
+  screenshotTicTacToe,
+  screenshotEcommerce,
+  screenshotFhcClinic,
+  screenshotFhcModules,
+  xokaExperience,
 };
+
+

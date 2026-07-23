@@ -1,16 +1,28 @@
+import { motion } from "framer-motion"
 import { BallCanvas } from "./canvas"
 import { SectionWrapper } from "../hoc"
 import { technologies } from "../constants"
+import { styles } from "../styles"
+import { textVariant } from "../utils/motion"
+
 const Tech = () => {
   return (
-    <div className="flex flex-row flex-wrap justify-center gap-10">
-      {technologies.map ((technoLogy) => (
-        <div className="w-28 h-28" key={technoLogy.name}>
-          <BallCanvas icon={technoLogy.icon}/>
-        </div>
-      ))}
-    </div>
+    <>
+      <motion.div variants={textVariant()} className="mb-10 text-center">
+        <p className={styles.sectionSubText}>My Tech Stack</p>
+        <h2 className={styles.sectionHeadText}>Technical Skills.</h2>
+      </motion.div>
+
+      <div className="flex flex-row flex-wrap justify-center gap-10">
+        {technologies.map((technoLogy) => (
+          <div className="w-28 h-28 flex flex-col items-center gap-2" key={technoLogy.name}>
+            <BallCanvas icon={technoLogy.icon}/>
+            <p className="text-secondary text-[14px] text-center font-medium">{technoLogy.name}</p>
+          </div>
+        ))}
+      </div>
+    </>
   )
 }
 
-export default SectionWrapper(Tech, '')
+export default SectionWrapper(Tech, 'skills')

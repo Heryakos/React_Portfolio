@@ -5,41 +5,43 @@ import { github } from "../assets";
 import { SectionWrapper } from "../hoc";
 import { projects } from "../constants";
 import { fadeIn, textVariant } from "../utils/motion";
+
 const ProjectCard = ({
   index,
   name,
   description,
   tags,
   image,
-  source_code_Link,
+  source_code_link,
+  live_demo_link,
 }) => {
   return (
-    <motion.div variants={fadeIn("up", "spring", index * 0.5, 0.75)}>
+    <motion.div variants={fadeIn("up", "spring", index * 0.2, 0.75)}>
       <Tilt
-        options={{ max: 45, scale: 1, speed: 450 }}
-        className="bg-tertiary p-5 rounded-2xl sm:w-[360px] w-full"
+        options={{ max: 20, scale: 1, speed: 450 }}
+        className="bg-tertiary p-5 rounded-2xl sm:w-[360px] w-full flex flex-col h-full shadow-card border border-[#915eff]/10"
       >
-        <div className="relative w-full h-[230px] overflow-hidden">
+        <div className="relative w-full h-[210px] overflow-hidden rounded-2xl">
           <img
             src={image}
-            alt={image}
-            className="w-full h-full object-cover rounded-2xl transform transition-transform duration-300 ease-in-out hover:scale-110"
+            alt={name}
+            className="w-full h-full object-cover rounded-2xl transform transition-transform duration-300 ease-in-out hover:scale-105"
           />
-          <div className="absolute inset-0 flex justify-end m-3 card-img_hover">
-            {/* this where the git hub  or other emblem or log image is placed  */}
+          <div className="absolute inset-0 flex justify-end m-3 gap-2 card-img_hover">
+            {live_demo_link && (
+              <div
+                onClick={() => window.open(live_demo_link.startsWith('http') ? live_demo_link : `https://${live_demo_link}`, "_blank")}
+                className="black-gradient w-10 h-10 rounded-full flex justify-center items-center cursor-pointer shadow-md hover:border hover:border-[#915eff]"
+                title="View Live Demo"
+              >
+                <span className="text-[14px]">🔗</span>
+              </div>
+            )}
+
             <div
-              onClick={() => window.open("google.com")}
-              className="black-gradient w-10 h-10 rounded-full flex justify-center items-center cursor-pointer"
-            >
-              <img
-                src={github}
-                alt="github"
-                className="w-1/2 h-1/2 object-contain"
-              />
-            </div>
-            <div
-              onClick={() => window.open(source_code_Link, "_blank")}
-              className="black-gradient w-10 h-10 rounded-full flex justify-center items-center cursor-pointer"
+              onClick={() => window.open(source_code_link || "https://github.com/Heryakos", "_blank")}
+              className="black-gradient w-10 h-10 rounded-full flex justify-center items-center cursor-pointer shadow-md hover:border hover:border-[#915eff]"
+              title="View Code on GitHub"
             >
               <img
                 src={github}
@@ -50,11 +52,11 @@ const ProjectCard = ({
           </div>
         </div>
 
-        <div className="mt-5">
-          <h3 className="text-white font-bold text-[24px]">{name}</h3>
-          <p className="mt-2 text-secondary text-[14px]">{description}</p>
+        <div className="mt-5 flex-1">
+          <h3 className="text-white font-bold text-[20px]">{name}</h3>
+          <p className="mt-2 text-secondary text-[14px] leading-[22px]">{description}</p>
         </div>
-        {/* this where the tages under the work has been applyed in different color and different name like green blue and red  */}
+
         <div className="mt-4 flex flex-wrap gap-2">
           {tags.map((tag) => (
             <p key={tag.name} className={`text-[14px] ${tag.color}`}>
@@ -66,39 +68,25 @@ const ProjectCard = ({
     </motion.div>
   );
 };
+
 const Works = () => {
   return (
     <>
       <motion.div variants={textVariant()}>
-        <p className={`${styles.sectionSubText} text-center`}>My Projects</p>
-        <h2 className={`${styles.sectionHeadText} text-center`}>Projects.</h2>
+        <p className={`${styles.sectionSubText}`}>Case Studies & Solutions</p>
+        <h2 className={`${styles.sectionHeadText}`}>Featured Projects.</h2>
       </motion.div>
+
       <div className="w-full flex">
         <motion.p
           variants={fadeIn("", "", 0.1, 1)}
           className="mt-3 text-secondary text-[17px] max-w-3xl leading-[30px]"
         >
-          <strong>SpaceX Clone</strong> <br />A responsive clone of the SpaceX
-          website, built with JavaScript, HTML, CSS, and Bootstrap. This project
-          highlights attention to design details and layout accuracy, closely
-          resembling the original SpaceX site. It’s fully responsive and
-          optimized for desktop and mobile views.
-          <strong> Game Hub - Gaming Platform </strong> <br />A platform
-          forgaming enthusiasts that connects to gaming APIs using Axios to
-          fetch and display game data dynamically. This project demonstrates API
-          integration skills and showcases real-time data handling to provide
-          up-to-date game information.
-          <br/>
-          <strong> Tic-Tac-Toe Game (React) </strong> <br />
-          5x5 Grid Interface: Designed and implemented a scalable 5x5 game board
-          for a more challenging gameplay experience. <br/>Flexible Win Condition:
-          Configured the game to recognize a win condition when four in a row
-          are aligned, enhancing traditional gameplay.<br/> Responsive and
-          Interactive UI: Optimized for both desktop and mobile, making it
-          accessible and engaging for players on various devices.
+          Explore my real-world enterprise applications, ERPNext custom Frappe modules, interactive 3D platforms, and live deployed web applications.
         </motion.p>
       </div>
-      <div className="mt-20 flex flex-wrap gap-7">
+
+      <div className="mt-12 flex flex-wrap gap-7 justify-center">
         {projects.map((project, index) => (
           <ProjectCard key={`project-${index}`} index={index} {...project} />
         ))}
@@ -107,4 +95,4 @@ const Works = () => {
   );
 };
 
-export default SectionWrapper(Works, "");
+export default SectionWrapper(Works, "projects");

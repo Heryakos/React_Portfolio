@@ -7,14 +7,20 @@ import Experience from './Experience';
 import Works from './Works';
 import Feedbacks from './Feedbacks';
 import Contact from './Contact';
+import Stats from './Stats';
+import Services from './Services';
+import WhyChooseMe from './WhyChooseMe';
 
 export {
   Hero,
   Navbar,
   About,
+  Stats,
   Tech,
-  Experience,
   Works,
+  Experience,
+  Services,
+  WhyChooseMe,
   Feedbacks,
   Contact,
   EarthCanvas, 
