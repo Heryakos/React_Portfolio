@@ -42,7 +42,8 @@ const Hero = () => {
         </div>
       </div>
       
-      <div className="w-full h-full absolute inset-0 z-0">
+      {/* 3D Canvas or Mobile Fallback */}
+      <div className="w-full h-full absolute inset-0 z-0 flex items-end justify-center md:items-stretch">
         <ComputersCanvas/>
       </div>
 
