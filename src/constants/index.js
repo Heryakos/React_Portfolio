@@ -37,6 +37,13 @@ import {
   portfolio5SystemSettings,
   pythonIcon,
   netIcon,
+  smsMockup1,
+  smsMockup2,
+  smsMockup3,
+  smsMockup4,
+  smsMockup5,
+  smsMockup6,
+  smsMockup7,
 } from "../assets";
 
 export const navLinks = [
@@ -242,6 +249,27 @@ export const projects = [
     image: screenshotFhcModules,
     source_code_link: "https://github.com/Heryakos",
     live_demo_link: "fhcerp.efhc.gov.et/app",
+  },
+  {
+    name: "FHC SMS Broadcast System",
+    description:
+      "A custom broadcast messaging module integrated into the FHC ERP system for sending targeted SMS notifications to employees and custom numbers.",
+    tags: [
+      { name: "Frappe", color: "blue-text-gradient" },
+      { name: "ERPNext", color: "green-text-gradient" },
+      { name: "Python", color: "pink-text-gradient" },
+    ],
+    image: smsMockup1,
+    gallery: [
+      smsMockup2,
+      smsMockup3,
+      smsMockup4,
+      smsMockup5,
+      smsMockup6,
+      smsMockup7,
+    ],
+    source_code_link: "https://github.com/Heryakos",
+    live_demo_link: "http://fhcerp.efhc.gov.et/app/fhc-send-sms",
   },
   {
     name: "Game Hub - Gaming Platform",

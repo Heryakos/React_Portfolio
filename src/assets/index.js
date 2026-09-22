@@ -51,6 +51,13 @@ import portfolio4MobileApp from "./portfolio_4_mobile_app.png";
 import portfolio5SystemSettings from "./portfolio_5_system_settings.png";
 import pythonIcon from "./Python-Logo-PNG-Image.png";
 import netIcon from "./net-framework-logo.png";
+import smsMockup1 from "./mockups/Mockup 2026-09-22 143512.png";
+import smsMockup2 from "./mockups/Mockup 2026-09-22 143534.png";
+import smsMockup3 from "./mockups/Mockup 2026-09-22 143547.png";
+import smsMockup4 from "./mockups/Mockup 2026-09-22 143600.png";
+import smsMockup5 from "./mockups/Mockup 2026-09-22 143615.png";
+import smsMockup6 from "./mockups/Mockup 2026-09-22 143622.png";
+import smsMockup7 from "./mockups/Mockup 2026-09-22 143636.png";
 
 export {
   Angular,
@@ -101,6 +108,13 @@ export {
   portfolio5SystemSettings,
   pythonIcon,
   netIcon,
+  smsMockup1,
+  smsMockup2,
+  smsMockup3,
+  smsMockup4,
+  smsMockup5,
+  smsMockup6,
+  smsMockup7,
 };
 
 
