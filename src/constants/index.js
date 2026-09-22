@@ -29,6 +29,14 @@ import {
   screenshotFhcClinic,
   screenshotFhcModules,
   xokaExperience,
+  ecommercePortfolioThumbnail,
+  portfolio1HeroPlatform,
+  portfolio2ProductManagement,
+  portfolio3OrdersVendors,
+  portfolio4MobileApp,
+  portfolio5SystemSettings,
+  pythonIcon,
+  netIcon,
 } from "../assets";
 
 export const navLinks = [
@@ -123,10 +131,10 @@ export const whyChooseMe = [
 ];
 
 export const technologies = [
-  { name: "Python", icon: backend },
+  { name: "Python", icon: pythonIcon },
   { name: "JavaScript", icon: javascript },
   { name: "TypeScript", icon: typescript },
-  { name: "C# / .NET", icon: backend },
+  { name: "C# / .NET", icon: netIcon },
   { name: "SQL", icon: sql },
   { name: "Angular", icon: Angular },
   { name: "React JS", icon: reactjs },
@@ -262,15 +270,22 @@ export const projects = [
     live_demo_link: "https://ak-3d-company-portfolio.vercel.app/",
   },
   {
-    name: "E-Commerce Admin Dashboard",
+    name: "E-Commerce Ecosystem",
     description:
-      "Full-featured admin management dashboard for e-commerce analytics, product inventory, order processing, and customer insights.",
+      "A complete e-commerce ecosystem featuring a customer-facing website, a responsive mobile app, and a comprehensive admin dashboard for staff to monitor and manage operations.",
     tags: [
       { name: "Next.js", color: "blue-text-gradient" },
       { name: "React", color: "green-text-gradient" },
       { name: "Tailwind CSS", color: "pink-text-gradient" },
     ],
-    image: screenshotEcommerce,
+    image: ecommercePortfolioThumbnail,
+    gallery: [
+      portfolio1HeroPlatform,
+      portfolio2ProductManagement,
+      portfolio3OrdersVendors,
+      portfolio4MobileApp,
+      portfolio5SystemSettings,
+    ],
     source_code_link: "https://github.com/Heryakos",
     live_demo_link: "https://e-commerce-senan.vercel.app/dashboard",
   },

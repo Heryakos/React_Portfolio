@@ -43,6 +43,15 @@ import screenshotFhcClinic from "./Screenshot 2026-07-23 152453.png";
 import screenshotFhcModules from "./Screenshot 2026-07-23 152520.png";
 import xokaExperience from "./Hiryakos Experience.pdf";
 
+import ecommercePortfolioThumbnail from "./ecommerce_portfolio_thumbnail.png";
+import portfolio1HeroPlatform from "./portfolio_1_hero_platform.png";
+import portfolio2ProductManagement from "./portfolio_2_product_management.png";
+import portfolio3OrdersVendors from "./portfolio_3_orders_vendors.png";
+import portfolio4MobileApp from "./portfolio_4_mobile_app.png";
+import portfolio5SystemSettings from "./portfolio_5_system_settings.png";
+import pythonIcon from "./Python-Logo-PNG-Image.png";
+import netIcon from "./net-framework-logo.png";
+
 export {
   Angular,
   logo,
@@ -84,6 +93,14 @@ export {
   screenshotFhcClinic,
   screenshotFhcModules,
   xokaExperience,
+  ecommercePortfolioThumbnail,
+  portfolio1HeroPlatform,
+  portfolio2ProductManagement,
+  portfolio3OrdersVendors,
+  portfolio4MobileApp,
+  portfolio5SystemSettings,
+  pythonIcon,
+  netIcon,
 };
 
 

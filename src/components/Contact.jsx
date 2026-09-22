@@ -68,7 +68,27 @@ const Contact = () => {
             className="flex items-center gap-3 text-white hover:text-[#915eff] transition-colors"
           >
             <span className="text-[20px]">💻</span>
-            <span className="text-[15px] font-medium">github.com/Heryakos/Hiryakos_PortFolio</span>
+            <span className="text-[15px] font-medium">github.com</span>
+          </a>
+
+          <a
+            href="https://www.linkedin.com/in/hiryakos-meles-874874257"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-3 text-white hover:text-[#915eff] transition-colors"
+          >
+            <span className="text-[20px]">💼</span>
+            <span className="text-[15px] font-medium">linkedin.com/in/hiryakos-meles</span>
+          </a>
+
+          <a
+            href="https://www.upwork.com/freelancers/~01d887f4b877df25ac?referrer_url_path=%2Fnx%2Fsearch%2Ftalent%2Fdetails%2F~01d887f4b877df25ac%2Fprofile"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-3 text-white hover:text-[#915eff] transition-colors"
+          >
+            <span className="text-[20px]">🚀</span>
+            <span className="text-[15px] font-medium">Upwork Profile</span>
           </a>
         </div>
 
