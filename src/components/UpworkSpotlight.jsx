@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { styles } from "../styles";
 import { SectionWrapper } from "../hoc";
 import { textVariant, fadeIn } from "../utils/motion";
-import { resume, hiryakosAvatar, xokaExperience, github } from "../assets";
+import { resume, hiryakosAvatar, githubAvatar, xokaExperience, github } from "../assets";
 import CredentialsVault from "./CredentialsVault";
 import { useGithubLive } from "../hooks/useGithubLive";
 
@@ -314,7 +314,8 @@ const UpworkSpotlight = () => {
               <div className="relative shrink-0">
                 <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-purple-500/50 shadow-md ring-2 ring-purple-500/15 bg-slate-100 dark:bg-[#110a1d] flex items-center justify-center">
                   <img
-                    src={hiryakosAvatar}
+                    src={githubLive.avatarUrl || githubAvatar}
+                    onError={(e) => { e.currentTarget.src = githubAvatar; }}
                     alt="Hiryakos Meles"
                     className="w-full h-full object-cover object-top scale-105"
                   />

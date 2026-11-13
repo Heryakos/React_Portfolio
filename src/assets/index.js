@@ -1,4 +1,5 @@
 import hiryakosAvatar from "./hiryakos_avatar.png";
+import githubAvatar from "./github_avatar.png";
 import logo from "./logo.svg";
 import backend from "./backend.png";
 import creator from "./creator.png";
@@ -89,6 +90,7 @@ import paytaxiMobileQrScanner from "./paytaxi/mobile_04_qr_scanner.png";
 
 export {
   hiryakosAvatar,
+  githubAvatar,
 
   Angular,
   logo,

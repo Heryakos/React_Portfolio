@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { githubStats as fallbackStats } from "../constants";
 
-const CACHE_KEY = "heryakos_github_live_cache_v1";
+const CACHE_KEY = "heryakos_github_live_cache_v2";
 const CACHE_DURATION_MS = 10 * 60 * 1000; // 10 minutes cache to avoid rate limits
 
 function getRelativeTime(dateString) {
@@ -46,6 +46,7 @@ export function useGithubLive(username = "Heryakos") {
       username,
       name: "Hiryakos Meles",
       bio: "Full Stack Developer & Project Manager | TypeScript, React, Python, C# | Bridging technical excellence with strategic delivery.",
+      avatarUrl: "https://avatars.githubusercontent.com/u/110915633?v=4",
       repos: fallbackStats.repos,
       stars: fallbackStats.stars,
       followers: fallbackStats.followers,
@@ -130,6 +131,7 @@ export function useGithubLive(username = "Heryakos") {
           username: userData.login || username,
           name: userData.name || "Hiryakos Meles",
           bio: computedBio,
+          avatarUrl: userData.avatar_url || "https://avatars.githubusercontent.com/u/110915633?v=4",
           repos: computedRepos,
           stars: computedStars,
           followers: computedFollowers,
