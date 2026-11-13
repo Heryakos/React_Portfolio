@@ -1,7 +1,25 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { styles } from "../styles";
-import { resume, hiryakosAvatar } from "../assets";
+import {
+  resume,
+  hiryakosAvatar,
+  pythonIcon,
+  netIcon,
+  typescript,
+  Angular,
+  reactjs,
+  linux,
+  docker,
+  nginx,
+  postgresql,
+  mariadb,
+  sqlServer,
+  nodejs,
+  tailwind,
+  git,
+  frappe,
+} from "../assets";
 
 const consoleTabs = [
   {
@@ -86,6 +104,25 @@ server {
 }`,
     footerNote: "Hardened Firewalls • Automated SSL • MariaDB Query Tuning",
   },
+];
+
+
+const marqueeTech = [
+  { name: "ERPNext & Frappe v15", icon: frappe },
+  { name: "Python Backend", icon: pythonIcon },
+  { name: "C# / .NET Core", icon: netIcon },
+  { name: "Angular Enterprise", icon: Angular },
+  { name: "React & Next.js", icon: reactjs },
+  { name: "TypeScript", icon: typescript },
+  { name: "PostgreSQL", icon: postgresql },
+  { name: "MariaDB & MySQL", icon: mariadb },
+  { name: "Microsoft SQL Server", icon: sqlServer },
+  { name: "Linux Ubuntu Admin", icon: linux },
+  { name: "Docker & Compose", icon: docker },
+  { name: "Nginx Reverse Proxy", icon: nginx },
+  { name: "Node.js & Express", icon: nodejs },
+  { name: "Tailwind CSS", icon: tailwind },
+  { name: "Git & CI/CD", icon: git },
 ];
 
 const Hero = () => {
@@ -423,17 +460,28 @@ const Hero = () => {
         </motion.div>
       </div>
 
-      {/* Marquee Competency Ticker */}
-      <div className="w-full overflow-hidden whitespace-nowrap border-y border-slate-200 dark:border-white/10 py-3.5 mt-16 backdrop-blur-md bg-white/60 dark:bg-black/40">
-        <div className="inline-block animate-marquee text-[13px] sm:text-[14px] font-mono tracking-widest text-slate-700 dark:text-slate-400 uppercase">
-          <span className="mx-4 text-electric-blue font-bold">✦ Frappe Framework &amp; ERPNext v15</span>
-          <span className="mx-4 text-emerald-600 dark:text-emerald-400 font-bold">✦ Federal Housing Corporation Systems</span>
-          <span className="mx-4 text-blue-600 dark:text-blue-400 font-bold">✦ Angular &amp; React Enterprise SPAs</span>
-          <span className="mx-4 text-purple-600 dark:text-purple-400 font-bold">✦ Master of Project Management (MPM)</span>
-          <span className="mx-4 text-pink-600 dark:text-pink-400 font-bold">✦ C# / .NET Core &amp; Python APIs</span>
-          <span className="mx-4 text-amber-600 dark:text-amber-400 font-bold">✦ MariaDB, PostgreSQL &amp; SQL Server</span>
-          <span className="mx-4 text-cyan-600 dark:text-cyan-400 font-bold">✦ PayTaxi Mobility Soundbox FinTech</span>
-          <span className="mx-4 text-emerald-600 dark:text-emerald-400 font-bold">✦ Linux Ubuntu Server Admin &amp; Nginx</span>
+      {/* Marquee Competency Ticker with Real Brand Logos */}
+      <div className="w-full overflow-hidden whitespace-nowrap border-y border-slate-200 dark:border-white/10 py-3.5 mt-16 backdrop-blur-md bg-white/60 dark:bg-black/40 group">
+        <div 
+          className="inline-flex items-center gap-6 animate-marquee group-hover:[animation-play-state:paused]"
+          style={{ animationDuration: '35s' }}
+        >
+          {[...marqueeTech, ...marqueeTech].map((tech, idx) => (
+            <div
+              key={idx}
+              className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-slate-100/90 dark:bg-white/[0.04] border border-slate-200/80 dark:border-white/10 shadow-xs shrink-0 hover:border-electric-blue/40 transition-colors"
+            >
+              <img
+                src={tech.icon}
+                alt={tech.name}
+                className="w-5 h-5 object-contain shrink-0"
+                loading="lazy"
+              />
+              <span className="text-[12.5px] font-mono font-semibold tracking-wide text-slate-800 dark:text-slate-200 uppercase">
+                {tech.name}
+              </span>
+            </div>
+          ))}
         </div>
       </div>
     </section>
