@@ -14,7 +14,7 @@ const Stats = () => {
           variants={fadeIn("up", "spring", index * 0.2, 0.75)}
           className="flex flex-col items-center justify-center text-center p-4 min-w-[160px]"
         >
-          <h3 className="text-[#915eff] text-[40px] font-extrabold">{stat.count}</h3>
+          <h3 className="text-electric-blue text-[40px] font-extrabold">{stat.count}</h3>
           <p className="text-secondary text-[15px] font-medium mt-1">{stat.label}</p>
         </motion.div>
       ))}

@@ -8,8 +8,8 @@ import { textVariant } from "../utils/motion";
 
 const ExperienceCard = ({experience}) => (
   <VerticalTimelineElement 
-  contentStyle={{background:'#1d1836', color:'#fff'}}
-  contentArrowStyle={{borderRight:'7px solid #232631'}}
+  contentStyle={{background:'rgba(var(--bg-tertiary), 0.9)', color:'rgb(var(--text-primary))', border: '1px solid rgba(var(--text-primary), 0.1)', backdropFilter: 'blur(10px)', boxShadow: '0 20px 40px -15px rgba(0,0,0,0.1)'}}
+  contentArrowStyle={{borderRight:'7px solid rgba(var(--bg-tertiary), 0.9)'}}
   date={experience.date}
   iconStyle={{background: experience.iconBg}}
   icon= {
@@ -23,10 +23,10 @@ const ExperienceCard = ({experience}) => (
   } 
   >
     <div>
-      <h3 className="text-white text-[24px] font-bold">
+      <h3 className="text-slate-900 dark:text-white text-[22px] sm:text-[24px] font-bold tracking-tight">
         {experience.title}
       </h3>
-      <p className="text-secondary text-[16px] font-semibold" style={{margin:0}}>
+      <p className="text-electric-blue font-semibold text-[15px]" style={{margin:0}}>
         {experience.company_name}
       </p>
     </div>
@@ -34,7 +34,7 @@ const ExperienceCard = ({experience}) => (
     {experience.points.map((point,index)=>(
       <li
       key={`experience-point-${index}`}
-      className="text-white-100 text-[14px] pl-1 tracking-wider"
+      className="text-slate-700 dark:text-slate-300 text-[13.5px] sm:text-[14px] pl-1 tracking-normal leading-relaxed"
       >
         {point}
       </li>
@@ -46,7 +46,7 @@ const ExperienceCard = ({experience}) => (
         <a
           href={experience.certificate}
           download="Hiryakos_XOKA_Experience_Certificate.pdf"
-          className="inline-flex items-center gap-2 bg-[#915eff] hover:bg-[#804bee] text-white text-[13px] font-bold py-2 px-4 rounded-lg transition-all duration-300 shadow-md"
+          className="inline-flex items-center gap-2 bg-electric-blue hover:bg-blue-500 text-white text-[13px] font-bold py-2 px-4 rounded-full transition-all duration-300 shadow-glow border border-electric-blue"
         >
           <span>📄 Download Experience Letter</span>
         </a>
@@ -63,7 +63,7 @@ const Experience = () => {
           My Career Journey
         </p>
         <h2 className={`${styles.sectionHeadText}`}>
-          Experience.
+          (02) EXPERIENCE.
         </h2>
       </motion.div>
       <div className="mt-12 flex flex-col">

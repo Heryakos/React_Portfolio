@@ -1,19 +1,30 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./src/**/*.{js,jsx}"],
-  mode: "jit",
+  darkMode: "class",
   theme: {
     extend: {
       colors: {
-        primary: "#050816",
-        secondary: "#aaa6c3",
-        tertiary: "#151030",
-        "black-100": "#100d25",
-        "black-200": "#090325",
-        "white-100": "#f3f3f3",
+        primary: "rgb(var(--bg-primary) / <alpha-value>)",
+        secondary: "rgb(var(--text-secondary) / <alpha-value>)",
+        tertiary: "rgb(var(--bg-tertiary) / <alpha-value>)",
+        "black-100": "rgb(var(--bg-black-100) / <alpha-value>)",
+        "black-200": "rgb(var(--bg-black-200) / <alpha-value>)",
+        "white-100": "rgb(var(--bg-white-100) / <alpha-value>)",
+        "electric-blue": "#2563EB",
       },
       boxShadow: {
-        card: "0px 35px 120px -15px #211e35",
+        card: "0px 20px 40px -15px rgba(0,0,0,0.8)",
+        glow: "0 0 20px rgba(37, 99, 235, 0.4)",
+      },
+      animation: {
+        marquee: 'marquee 25s linear infinite',
+      },
+      keyframes: {
+        marquee: {
+          '0%': { transform: 'translateX(0%)' },
+          '100%': { transform: 'translateX(-50%)' },
+        }
       },
       screens: {
         xs: "450px",

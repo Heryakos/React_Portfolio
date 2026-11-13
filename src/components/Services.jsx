@@ -11,7 +11,7 @@ const ServiceCard = ({ index, title, description, icon }) => {
     <Tilt className="xs:w-[270px] w-full">
       <motion.div
         variants={fadeIn("right", "spring", 0.3 * index, 0.75)}
-        className="w-full green-pink-gradient p-[1px] rounded-[20px] shadow-card"
+        className="w-full bg-gradient-to-br from-blue-500/20 via-sky-500/10 to-indigo-500/20 dark:from-blue-500/30 dark:via-purple-500/20 dark:to-emerald-500/30 p-[1px] rounded-[20px] shadow-sm dark:shadow-card"
       >
         <div
           options={{
@@ -19,13 +19,15 @@ const ServiceCard = ({ index, title, description, icon }) => {
             scale: 1,
             speed: 450,
           }}
-          className="bg-tertiary rounded-[20px] py-6 px-6 min-h-[300px] flex justify-between items-center flex-col text-center"
+          className="bg-white dark:bg-tertiary/90 backdrop-blur-sm rounded-[20px] py-6 px-6 min-h-[300px] flex justify-between items-center flex-col text-center border border-slate-200/80 dark:border-white/10"
         >
-          <img src={icon} alt={title} className="w-16 h-16 object-contain mb-2" />
-          <h3 className="text-white text-[20px] font-bold">
+          <div className="w-16 h-16 rounded-xl bg-blue-50 dark:bg-white/5 p-3 flex items-center justify-center mb-2">
+            <img src={icon} alt={title} className="w-full h-full object-contain filter drop-shadow" />
+          </div>
+          <h3 className="text-slate-900 dark:text-white text-[19px] font-bold">
             {title}
           </h3>
-          <p className="text-secondary text-[14px] mt-2 leading-[20px]">
+          <p className="text-slate-600 dark:text-secondary text-[14px] mt-2 leading-[20px]">
             {description}
           </p>
         </div>

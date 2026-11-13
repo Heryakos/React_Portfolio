@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -8,9 +8,42 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
+  font-family: "Inter", sans-serif;
   scroll-behavior: smooth;
-  color-scheme: dark;
+  color-scheme: light dark;
+}
+
+@layer base {
+  :root {
+    --bg-primary: 255 255 255;
+    --bg-tertiary: 243 244 246;
+    --bg-black-100: 229 231 235;
+    --bg-black-200: 209 213 219;
+    --bg-white-100: 31 41 55;
+    
+    --text-primary: 0 0 0;
+    --text-secondary: 75 85 99;
+  }
+
+  .dark {
+    --bg-primary: 0 0 0;
+    --bg-tertiary: 9 9 11;
+    --bg-black-100: 5 5 5;
+    --bg-black-200: 0 0 0;
+    --bg-white-100: 248 250 252;
+
+    --text-primary: 255 255 255;
+    --text-secondary: 161 161 170;
+  }
+  
+  body {
+    background-color: rgb(var(--bg-primary));
+    color: rgb(var(--text-primary));
+  }
+
+  .vertical-timeline::before {
+    background: rgba(var(--text-primary), 0.1) !important;
+  }
 }
 
 .hash-span {
@@ -20,33 +53,21 @@
 }
 
 .black-gradient {
-  background: #000000; /* fallback for old browsers */
-  background: -webkit-linear-gradient(
-    to right,
-    #434343,
-    #000000
-  ); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(
-    to right,
-    #434343,
-    #000000
-  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: #000000;
+  background: -webkit-linear-gradient(to right, #09090b, #000000);
+  background: linear-gradient(to right, #09090b, #000000);
 }
 
 .violet-gradient {
-  background: #804dee;
-  background: linear-gradient(-90deg, #804dee 0%, rgba(60, 51, 80, 0) 100%);
-  background: -webkit-linear-gradient(
-    -90deg,
-    #804dee 0%,
-    rgba(60, 51, 80, 0) 100%
-  );
+  background: #6366f1;
+  background: linear-gradient(-90deg, #6366f1 0%, rgba(99, 102, 241, 0) 100%);
+  background: -webkit-linear-gradient(-90deg, #6366f1 0%, rgba(99, 102, 241, 0) 100%);
 }
 
 .green-pink-gradient {
-  background: "#00cea8";
-  background: linear-gradient(90.13deg, #00cea8 1.9%, #bf61ff 97.5%);
-  background: -webkit-linear-gradient(-90.13deg, #00cea8 1.9%, #bf61ff 97.5%);
+  background: #0ea5e9;
+  background: linear-gradient(90.13deg, #0ea5e9 1.9%, #8b5cf6 97.5%);
+  background: -webkit-linear-gradient(-90.13deg, #0ea5e9 1.9%, #8b5cf6 97.5%);
 }
 
 .orange-text-gradient {
@@ -62,6 +83,7 @@
     #f5af19
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
@@ -78,6 +100,7 @@
     #38ef7d
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
@@ -95,6 +118,7 @@
     #56ccf2
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
@@ -111,6 +135,7 @@
     #fc6767
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 

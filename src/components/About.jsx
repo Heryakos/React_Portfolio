@@ -9,7 +9,7 @@ const About = () => {
     <>
       <motion.div variants={textVariant()}>
         <p className={styles.sectionSubText}>Introduction</p>
-        <h2 className={styles.sectionHeadText}>About Me.</h2>
+        <h2 className={styles.sectionHeadText}>(01) ABOUT.</h2>
       </motion.div>
 
       <motion.p
@@ -23,7 +23,7 @@ const About = () => {
         {/* Education */}
         <motion.div
           variants={fadeIn("right", "spring", 0.2, 0.75)}
-          className="bg-tertiary p-6 rounded-2xl flex-1 min-w-[280px] border border-[#915eff]/20 shadow-card"
+          className="bg-tertiary/40 backdrop-blur-md p-6 rounded-2xl flex-1 min-w-[280px] border border-white/10 shadow-card"
         >
           <h3 className="text-white text-[20px] font-bold mb-4 flex items-center gap-2">
             <span>🎓</span> Education
@@ -31,11 +31,11 @@ const About = () => {
           <div className="space-y-4">
             <div>
               <h4 className="text-white font-semibold text-[16px]">BSc in Computer Science</h4>
-              <p className="text-[#915eff] text-[14px]">St. Mary's University College</p>
+              <p className="text-blue-400 text-[14px]">St. Mary's University College</p>
             </div>
             <div>
               <h4 className="text-white font-semibold text-[16px]">Master of Project Management (MPM)</h4>
-              <p className="text-[#915eff] text-[14px]">Alpha University</p>
+              <p className="text-blue-400 text-[14px]">Alpha University</p>
             </div>
           </div>
         </motion.div>
@@ -43,7 +43,7 @@ const About = () => {
         {/* Languages */}
         <motion.div
           variants={fadeIn("left", "spring", 0.3, 0.75)}
-          className="bg-tertiary p-6 rounded-2xl flex-1 min-w-[280px] border border-[#915eff]/20 shadow-card"
+          className="bg-tertiary/40 backdrop-blur-md p-6 rounded-2xl flex-1 min-w-[280px] border border-white/10 shadow-card"
         >
           <h3 className="text-white text-[20px] font-bold mb-4 flex items-center gap-2">
             <span>🌐</span> Languages

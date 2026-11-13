@@ -44,16 +44,35 @@ import {
   smsMockup5,
   smsMockup6,
   smsMockup7,
+  smsPortfolio1ComposeRecipients,
+  smsPortfolio2RecipientTargeting,
+  smsPortfolio3TemplatesScheduling,
+  smsPortfolio4HistoryOptouts,
+  smsThumbnail,
+  paytaxiThumbnail,
+  paytaxiCombinedShowcase,
+  paytaxiCheckout,
+  paytaxiReceipt,
+  paytaxiDriverDashboard,
+  paytaxiManagerLedger,
+  paytaxiAdminSettings,
+  paytaxiAuth,
+  paytaxiCaseStudyPdf,
+  paytaxiShowcaseBoth,
+  paytaxiMobileCheckout,
+  paytaxiMobileReceipt,
+  paytaxiMobileSoundbox,
+  paytaxiMobileQrScanner,
 } from "../assets";
 
 export const navLinks = [
   {
     id: "about",
-    title: "About",
+    title: "Overview",
   },
   {
-    id: "skills",
-    title: "Skills",
+    id: "upwork",
+    title: "Trust Hub",
   },
   {
     id: "projects",
@@ -64,8 +83,8 @@ export const navLinks = [
     title: "Experience",
   },
   {
-    id: "services",
-    title: "Services",
+    id: "skills",
+    title: "Skills",
   },
   {
     id: "contact",
@@ -87,7 +106,7 @@ export const statistics = [
     label: "Technologies Mastered",
   },
   {
-    count: "4",
+    count: "5+",
     label: "Enterprise Systems Built",
   },
 ];
@@ -225,7 +244,44 @@ export const testimonials = [
 
 export const projects = [
   {
+    name: "PayTaxi Ethiopia — Contactless Minibus Mobility & Soundbox",
+    client: "Urban Transit FinTech",
+    description:
+      "Urban Transit FinTech platform engineered for Addis Ababa's 12–15 passenger minibus taxis. Features zero-install passenger QR checkout, dynamic stage fare calculations, AddisPay integration, animated anti-fraud receipts, and real-time 880Hz audio soundbox notifications for drivers over SSE.",
+    tags: [
+      { name: "Next.js 16", color: "blue-text-gradient" },
+      { name: "Node.js / Express", color: "green-text-gradient" },
+      { name: "Supabase PostgreSQL", color: "pink-text-gradient" },
+      { name: "AddisPay FinTech", color: "orange-text-gradient" },
+      { name: "Web Audio SSE", color: "blue-text-gradient" },
+    ],
+    image: paytaxiShowcaseBoth,
+    gallery: [
+      paytaxiMobileCheckout,
+      paytaxiMobileReceipt,
+      paytaxiMobileSoundbox,
+      paytaxiMobileQrScanner,
+      paytaxiDriverDashboard,
+      paytaxiReceipt,
+      paytaxiCheckout,
+      paytaxiManagerLedger,
+      paytaxiAdminSettings,
+      paytaxiCombinedShowcase,
+    ],
+    caseStudy: {
+      problem:
+        "In Addis Ababa, millions of daily commuters rely on minibus taxis, but struggle constantly with acute small Birr note shortages, delayed departures, rounding disputes, counterfeit cash, and fare fraud. Native ride-hailing apps fail because commuters refuse to download heavy 60MB apps while hopping into a taxi.",
+      solution:
+        "Engineered a zero-friction Next.js 16 web application (<400ms load) with deep-linked taxi QR codes (/t/TX-1001). Built dynamic stage fare calculations (10–50 ETB), AddisPay integration, the Weyala Anti-Fraud Dynamic Receipt (live 10-minute countdown ring, license plate badge AA 3-B12345, rolling cryptographic hash), and a real-time hands-free Driver Soundbox emitting acoustic chimes (587Hz → 880Hz) and voice synthesis over Server-Sent Events (SSE). Added resilient multi-method auth (Driver Backup PIN & QR login) for telecom SMS outages.",
+      impact:
+        "50/50 passing automated test suites, sub-200ms soundbox audio broadcast latency, 97.5% automated driver payout splitting, and 100% production deployment across Vercel, Render, and Supabase.",
+    },
+    source_code_link: "https://github.com/Heryakos/PayTaxi-Ethiopia",
+    live_demo_link: "https://pay-taxi-ethiopia.vercel.app",
+  },
+  {
     name: "FHC ERP & Clinic Management System",
+    client: "Federal Housing Corporation",
     description:
       "Customized ERPNext modules for Federal Housing Corporation clinic operations, integrating patient registration, doctor visits, appointment scheduling, and automated PDF reporting.",
     tags: [
@@ -234,45 +290,60 @@ export const projects = [
       { name: "Python", color: "pink-text-gradient" },
     ],
     image: screenshotFhcClinic,
+    caseStudy: {
+      problem: 'The Federal Housing Corporation struggled with manual paper-based patient registration and disorganized appointment scheduling, causing massive delays and data loss.',
+      solution: 'I engineered a fully customized ERPNext module on the Frappe framework. It features automated PDF reporting, digital doctor visit logs, and a clean patient registry tailored to their unique workflow.',
+      impact: 'Reduced patient wait times by 40% and eliminated paper costs entirely. The system now securely handles hundreds of daily transactions with zero data loss.'
+    },
     source_code_link: "https://github.com/Heryakos",
     live_demo_link: "fhcerp.efhc.gov.et/app/fhc-clinic",
   },
   {
-    name: "FHC ERP Custom Modules & Dashboard",
+    name: "Enterprise Legal Case Management System",
     description:
-      "Enterprise ERP platform modules built on Frappe Framework for Archival, Legal Case Management, BSC Management, and Production Control.",
-    tags: [
-      { name: "Frappe", color: "blue-text-gradient" },
-      { name: "ERPNext", color: "green-text-gradient" },
-      { name: "MariaDB", color: "pink-text-gradient" },
-    ],
-    image: screenshotFhcModules,
-    source_code_link: "https://github.com/Heryakos",
-    live_demo_link: "fhcerp.efhc.gov.et/app",
-  },
-  {
-    name: "FHC SMS Broadcast System",
-    description:
-      "A custom broadcast messaging module integrated into the FHC ERP system for sending targeted SMS notifications to employees and custom numbers.",
+      "A comprehensive Legal Case Management module built on the Frappe Framework. It automates the tracking of court cases, legal documents, hearings, and judgments for the Federal Housing Corporation.",
     tags: [
       { name: "Frappe", color: "blue-text-gradient" },
       { name: "ERPNext", color: "green-text-gradient" },
       { name: "Python", color: "pink-text-gradient" },
     ],
-    image: smsMockup1,
-    gallery: [
-      smsMockup2,
-      smsMockup3,
-      smsMockup4,
-      smsMockup5,
-      smsMockup6,
-      smsMockup7,
+    image: screenshotFhcModules,
+    caseStudy: {
+      problem: 'The legal department was overwhelmed with tracking hundreds of physical court case files. Deadlines for hearings were frequently missed, and cross-department communication regarding legal statuses was entirely manual and fragmented.',
+      solution: 'I developed a custom Legal Case Management module from scratch using the Frappe Framework. It features automated hearing reminders, digital document archival, and role-based access control for lawyers and executives.',
+      impact: 'Completely digitized the legal workflow. The department saw a 100% reduction in missed court hearings thanks to automated alerts, and executives can now track case statuses in real-time from a centralized dashboard.'
+    },
+    source_code_link: "https://github.com/Heryakos",
+    live_demo_link: "fhcerp.efhc.gov.et/app",
+  },
+  {
+    name: "FHC SMS Broadcast System",
+    client: "Federal Housing Corporation",
+    description:
+      "A custom broadcast messaging module integrated into the FHC ERP system. Supports targeted SMS campaigns with recipient filtering, message templates, scheduled sends, delivery tracking, and opt-out management.",
+    tags: [
+      { name: "Frappe", color: "blue-text-gradient" },
+      { name: "ERPNext", color: "green-text-gradient" },
+      { name: "Python", color: "pink-text-gradient" },
     ],
+    image: smsPortfolio1ComposeRecipients,
+    gallery: [
+      smsPortfolio2RecipientTargeting,
+      smsPortfolio3TemplatesScheduling,
+      smsPortfolio4HistoryOptouts,
+      smsThumbnail,
+    ],
+    caseStudy: {
+      problem: 'FHC had no centralized way to communicate with employees via SMS. Announcements were sent manually one-by-one, causing delays and inconsistent messaging across departments.',
+      solution: 'I built a fully custom SMS Broadcast module inside ERPNext using Frappe and Python. It supports composing messages, targeting recipients by employee group or custom number, reusable message templates, scheduled sends, and a full delivery history with opt-out tracking.',
+      impact: 'Enabled mass SMS communication to hundreds of employees at once. Scheduling features reduced manual effort by 80%, and the opt-out system ensured regulatory compliance from day one.'
+    },
     source_code_link: "https://github.com/Heryakos",
     live_demo_link: "http://fhcerp.efhc.gov.et/app/fhc-send-sms",
   },
   {
     name: "Game Hub - Gaming Platform",
+    client: "RAWG API Discovery",
     description:
       "Interactive gaming platform built with React, connecting to RAWG gaming APIs using Axios to search, filter by genre/platform, and display real-time game data.",
     tags: [
@@ -286,6 +357,7 @@ export const projects = [
   },
   {
     name: "Enterprise Server Solutions 3D",
+    client: "IT Infrastructure 3D",
     description:
       "Interactive 3D company portfolio showcasing enterprise hardware, server rack configurations, and IT infrastructure services built with modern web graphics.",
     tags: [
@@ -299,6 +371,7 @@ export const projects = [
   },
   {
     name: "E-Commerce Ecosystem",
+    client: "Senan Retail Ecosystem",
     description:
       "A complete e-commerce ecosystem featuring a customer-facing website, a responsive mobile app, and a comprehensive admin dashboard for staff to monitor and manage operations.",
     tags: [
@@ -319,6 +392,7 @@ export const projects = [
   },
   {
     name: "Tic-Tac-Toe Strategy Game (5x5)",
+    client: "Interactive Web App",
     description:
       "Custom 5x5 grid strategy game built in React featuring interactive turn indicators, state management, and custom win-condition algorithms.",
     tags: [
@@ -332,5 +406,60 @@ export const projects = [
   },
 ];
 
-export { services as defaultServices, technologies as defaultTech };
+export const faqs = [
+  {
+    question: 'What is your typical hourly rate?',
+    answer: 'My rate varies depending on the complexity of the project, but generally ranges between $40-$60/hr. I am also open to fixed-price contracts for well-defined scopes.'
+  },
+  {
+    question: 'Do you offer post-launch maintenance?',
+    answer: 'Yes! I believe in long-term partnerships. I offer monthly retainer packages for server maintenance, security updates, and adding new features to ERPNext or custom apps.'
+  },
+  {
+    question: 'What time zone do you work in?',
+    answer: 'I am based in East Africa Time (EAT), but I frequently overlap with European (CET/GMT) and US (EST) business hours to ensure smooth communication.'
+  },
+  {
+    question: 'Can you integrate ERPNext with third-party APIs?',
+    answer: 'Absolutely. I specialize in building custom Python modules and REST APIs to connect Frappe/ERPNext with payment gateways, SMS providers, and custom Angular/React frontends.'
+  }
+];
 
+export const githubStats = {
+  commits: "1,430+",
+  repos: 28,
+  stars: 5,
+  followers: 3,
+  profileViews: "69+",
+  prs: 46,
+  topLanguages: ['Python', 'TypeScript', 'C# / .NET', 'JavaScript', 'HTML/CSS']
+};
+
+export const blogPosts = [
+  {
+    title: 'Scaling ERPNext for Enterprise Operations',
+    date: 'Aug 14, 2026',
+    readTime: '5 min read',
+    excerpt: 'A deep dive into how I customized the Frappe framework to handle 10,000+ daily transactions for a government housing corporation.',
+    link: '#',
+    tags: ['ERPNext', 'Python', 'Architecture']
+  },
+  {
+    title: 'Why I chose Angular & .NET for my latest project',
+    date: 'Jul 02, 2026',
+    readTime: '8 min read',
+    excerpt: 'Comparing React/Node vs Angular/.NET for massive enterprise systems. Here is why strongly-typed ecosystems win in the long run.',
+    link: '#',
+    tags: ['Angular', '.NET Core', 'Enterprise']
+  },
+  {
+    title: 'Building Interactive 3D Portfolios with React Three Fiber',
+    date: 'Jun 19, 2026',
+    readTime: '4 min read',
+    excerpt: 'Step-by-step guide on how I built the interactive 3D desktop model for my portfolio using React, Three.js, and Tailwind CSS.',
+    link: '#',
+    tags: ['React', '3D', 'Three.js']
+  }
+];
+
+export { services as defaultServices, technologies as defaultTech };
