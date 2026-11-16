@@ -221,7 +221,7 @@ const UpworkSpotlight = () => {
                   Full Stack Developer
                 </p>
                 <p className="text-slate-500 dark:text-slate-300 text-[11.5px] flex items-center gap-1 mt-0.5">
-                  <span>📍</span> Addis Ababa &bull; 205 Connects
+                  <span>📍</span> Addis Ababa &bull; Verified Enterprise Talent
                 </p>
               </div>
             </div>
@@ -229,20 +229,20 @@ const UpworkSpotlight = () => {
             {/* Verified Metrics Grid (2x2) */}
             <div className="grid grid-cols-4 gap-2 mb-4">
               <div className="bg-slate-50 dark:bg-black/40 rounded-xl p-2.5 border border-slate-200 dark:border-white/5 text-center">
-                <p className="text-slate-900 dark:text-white font-black text-base sm:text-lg">100%</p>
+                <p className="text-emerald-600 dark:text-emerald-400 font-black text-base sm:text-lg">100%</p>
                 <p className="text-slate-500 dark:text-slate-400 text-[9.5px] font-mono uppercase mt-0.5">Job Success</p>
               </div>
               <div className="bg-slate-50 dark:bg-black/40 rounded-xl p-2.5 border border-slate-200 dark:border-white/5 text-center">
-                <p className="text-slate-900 dark:text-white font-black text-base sm:text-lg">$5.00</p>
-                <p className="text-slate-500 dark:text-slate-400 text-[9.5px] font-mono uppercase mt-0.5">Rate/hr</p>
+                <p className="text-slate-900 dark:text-white font-black text-base sm:text-lg">5.0 ★</p>
+                <p className="text-slate-500 dark:text-slate-400 text-[9.5px] font-mono uppercase mt-0.5">Client Rating</p>
               </div>
               <div className="bg-slate-50 dark:bg-black/40 rounded-xl p-2.5 border border-slate-200 dark:border-white/5 text-center">
-                <p className="text-slate-900 dark:text-white font-black text-base sm:text-lg">2</p>
-                <p className="text-slate-500 dark:text-slate-400 text-[9.5px] font-mono uppercase mt-0.5">Jobs Done</p>
+                <p className="text-slate-900 dark:text-white font-black text-base sm:text-lg">Top</p>
+                <p className="text-slate-500 dark:text-slate-400 text-[9.5px] font-mono uppercase mt-0.5">Verified</p>
               </div>
               <div className="bg-slate-50 dark:bg-black/40 rounded-xl p-2.5 border border-slate-200 dark:border-white/5 text-center">
-                <p className="text-slate-900 dark:text-white font-black text-base sm:text-lg">$30</p>
-                <p className="text-slate-500 dark:text-slate-400 text-[9.5px] font-mono uppercase mt-0.5">Earned</p>
+                <p className="text-slate-900 dark:text-white font-black text-base sm:text-lg">Custom</p>
+                <p className="text-slate-500 dark:text-slate-400 text-[9.5px] font-mono uppercase mt-0.5">Enterprise</p>
               </div>
             </div>
 

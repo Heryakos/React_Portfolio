@@ -23,44 +23,12 @@ import {
 
 const consoleTabs = [
   {
-    id: "architecture",
-    label: "Enterprise Arch",
-    badge: "LIVE PROD",
-    badgeColor: "bg-emerald-500/20 text-emerald-500 dark:text-emerald-400 border-emerald-500/30",
-    title: "Federal Housing Corp & Enterprise Systems",
-    metrics: [
-      { label: "Production Uptime", value: "99.98%", status: "optimal" },
-      { label: "Active Enterprise Users", value: "5,000+", status: "active" },
-      { label: "Daily DB Queries", value: "240k+", status: "optimal" },
-      { label: "API Response Time", value: "< 42ms", status: "optimal" },
-    ],
-    codeSnippet: `// Federal Housing Corporation — Frappe ERP Hook
-frappe.ui.form.on('FHC Clinic Visit', {
-  refresh: function(frm) {
-    if (!frm.is_new() && frm.doc.status === 'Consultation Done') {
-      frm.add_custom_button(__('Dispense Pharmacy'), () => {
-        frappe.call({
-          method: 'fhc.clinic.doctype.dispense_medication',
-          args: { visit_id: frm.doc.name }
-        });
-      });
-    }
-  }
-});`,
-    footerNote: "Frappe Framework v15 • MariaDB 10.6 • Linux Ubuntu 22.04 LTS",
-  },
-  {
     id: "paytaxi",
     label: "PayTaxi FinTech",
-    badge: "SSE SOUNDBOX",
-    badgeColor: "bg-sky-500/20 text-sky-500 dark:text-sky-400 border-sky-500/30",
-    title: "Minibus Contactless Mobility & Soundbox",
-    metrics: [
-      { label: "Passenger Checkout", value: "Zero-Install", status: "active" },
-      { label: "Soundbox Latency", value: "< 250ms", status: "optimal" },
-      { label: "Auth Methods", value: "AddisPay + QR", status: "active" },
-      { label: "Fleet Capacity", value: "12-15 Seats", status: "optimal" },
-    ],
+    badge: "LIVE SOUNDBOX",
+    badgeColor: "bg-sky-500/20 text-sky-600 dark:text-sky-400 border-sky-500/30",
+    title: "Minibus Contactless Transit & Soundbox Simulator",
+    tagline: "Sub-250ms Audio Broadcast over Server-Sent Events (SSE)",
     codeSnippet: `// Driver Audio Soundbox — Server-Sent Event Broadcast
 router.post('/api/payments/confirm', async (req, res) => {
   const { taxi_id, amount_etb, ref_no } = req.body;
@@ -77,17 +45,34 @@ router.post('/api/payments/confirm', async (req, res) => {
     footerNote: "Next.js 16 • Express Microservice • Supabase PostgreSQL • SSE",
   },
   {
+    id: "architecture",
+    label: "FHC ERPNext",
+    badge: "ENTERPRISE PROD",
+    badgeColor: "bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 border-emerald-500/30",
+    title: "Federal Housing Corporation Healthcare ERP",
+    tagline: "Custom Frappe Doctypes, Automated Prescriptions & PDF Reports",
+    codeSnippet: `// Federal Housing Corporation — Frappe ERP Hook
+frappe.ui.form.on('FHC Clinic Visit', {
+  refresh: function(frm) {
+    if (!frm.is_new() && frm.doc.status === 'Consultation Done') {
+      frm.add_custom_button(__('Dispense Pharmacy'), () => {
+        frappe.call({
+          method: 'fhc.clinic.doctype.dispense_medication',
+          args: { visit_id: frm.doc.name }
+        });
+      });
+    }
+  }
+});`,
+    footerNote: "Frappe Framework v15 • MariaDB 10.6 • Linux Ubuntu 22.04 LTS",
+  },
+  {
     id: "devops",
     label: "Linux DevOps",
     badge: "SYS HARDENED",
     badgeColor: "bg-purple-500/20 text-purple-600 dark:text-purple-400 border-purple-500/30",
-    title: "Production Infrastructure & Database Engine",
-    metrics: [
-      { label: "OS Environment", value: "Ubuntu 22.04 LTS", status: "optimal" },
-      { label: "Reverse Proxy", value: "Nginx TLS 1.3", status: "optimal" },
-      { label: "Database Cluster", value: "MariaDB + PgSQL", status: "optimal" },
-      { label: "CI/CD Pipeline", value: "GitHub Actions", status: "optimal" },
-    ],
+    title: "High-Concurrency Reverse Proxy & Database Cluster",
+    tagline: "Ubuntu 22.04 LTS • TLS 1.3 • Connection Pooling",
     codeSnippet: `# Nginx High-Concurrency Upstream Load Balancer
 upstream fhc_erp_backend {
     server 127.0.0.1:8000 fail_timeout=0;
@@ -105,7 +90,6 @@ server {
     footerNote: "Hardened Firewalls • Automated SSL • MariaDB Query Tuning",
   },
 ];
-
 
 const marqueeTech = [
   { name: "ERPNext & Frappe v15", icon: frappe },
@@ -126,14 +110,23 @@ const marqueeTech = [
 ];
 
 const Hero = () => {
-  const [activeTabId, setActiveTabId] = useState("architecture");
+  const [activeTabId, setActiveTabId] = useState("paytaxi");
+  const [viewMode, setViewMode] = useState("sandbox"); // "sandbox" | "code"
   const [copied, setCopied] = useState(false);
   const [time, setTime] = useState("");
+
+  // PayTaxi Soundbox State
+  const [soundboxStatus, setSoundboxStatus] = useState("IDLE"); // "IDLE" | "PLAYING" | "CONFIRMED"
+  const [soundboxTxId, setSoundboxTxId] = useState("TX-1001");
+  const [soundboxHash, setSoundboxHash] = useState("a89c42ef");
+
+  // ERPNext Workflow State
+  const [erpStep, setErpStep] = useState(2); // 1: Register, 2: Doctor Consult, 3: Pharmacy Dispense, 4: DB Commit
+  const [isSimulatingErp, setIsSimulatingErp] = useState(false);
 
   useEffect(() => {
     const updateTime = () => {
       const now = new Date();
-      // Addis Ababa time (UTC+3)
       const options = {
         timeZone: "Africa/Addis_Ababa",
         hour: "2-digit",
@@ -155,6 +148,68 @@ const Hero = () => {
     navigator.clipboard.writeText(activeTab.codeSnippet);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
+  };
+
+  // Play Soundbox Demo (Audio Chime + Speech Synthesis)
+  const triggerSoundboxSimulation = () => {
+    if (soundboxStatus === "PLAYING") return;
+    setSoundboxStatus("PLAYING");
+
+    try {
+      const AudioCtx = window.AudioContext || window.webkitAudioContext;
+      if (AudioCtx) {
+        const ctx = new AudioCtx();
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = "sine";
+        osc.frequency.setValueAtTime(880, ctx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(1760, ctx.currentTime + 0.15);
+        gain.gain.setValueAtTime(0.3, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.35);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start();
+        osc.stop(ctx.currentTime + 0.35);
+      }
+
+      if ("speechSynthesis" in window) {
+        setTimeout(() => {
+          const text = "Payment confirmed. Fifty Birr received via AddisPay.";
+          const utter = new SpeechSynthesisUtterance(text);
+          utter.rate = 1.05;
+          utter.pitch = 1.1;
+          utter.onend = () => {
+            setSoundboxStatus("CONFIRMED");
+            setSoundboxHash(Math.random().toString(16).substring(2, 10));
+          };
+          utter.onerror = () => {
+            setSoundboxStatus("CONFIRMED");
+          };
+          window.speechSynthesis.speak(utter);
+        }, 300);
+      } else {
+        setTimeout(() => {
+          setSoundboxStatus("CONFIRMED");
+          setSoundboxHash(Math.random().toString(16).substring(2, 10));
+        }, 1200);
+      }
+    } catch {
+      setSoundboxStatus("CONFIRMED");
+    }
+  };
+
+  // Run ERPNext Workflow Simulation
+  const runErpWorkflow = () => {
+    if (isSimulatingErp) return;
+    setIsSimulatingErp(true);
+    setErpStep(1);
+
+    setTimeout(() => setErpStep(2), 700);
+    setTimeout(() => setErpStep(3), 1500);
+    setTimeout(() => {
+      setErpStep(4);
+      setIsSimulatingErp(false);
+    }, 2300);
   };
 
   return (
@@ -236,10 +291,10 @@ const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-[32px] sm:text-5xl lg:text-6xl xl:text-[64px] font-black text-slate-900 dark:text-white tracking-tight leading-[1.12] mb-5 break-words w-full"
+            className="text-[34px] sm:text-5xl lg:text-[58px] xl:text-[64px] font-black text-slate-900 dark:text-white tracking-tight leading-[1.1] mb-5 break-words w-full"
           >
             Architecting <br className="hidden sm:inline" />
-            <span className="bg-gradient-to-r from-electric-blue via-sky-500 to-emerald-500 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-electric-blue via-sky-400 to-emerald-400 bg-clip-text text-transparent">
               Enterprise ERPs,
             </span>{" "}
             Scalable APIs &amp; Mission-Critical Systems.
@@ -250,65 +305,88 @@ const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-slate-600 dark:text-slate-300 text-[15px] sm:text-[18px] max-w-2xl leading-relaxed mb-8 font-normal"
+            className="text-slate-600 dark:text-slate-300 text-[15px] sm:text-[17px] max-w-2xl leading-relaxed mb-7 font-normal"
           >
-            I'm <strong className="text-slate-900 dark:text-white font-bold">Hiryakos (Harry) Meles</strong> — a Senior Software Engineer at <span className="text-slate-900 dark:text-white font-semibold">Federal Housing Corporation (FHC)</span> &amp; Top-Rated talent. Specializing in <span className="text-slate-900 dark:text-white font-semibold">ERPNext / Frappe enterprise architecture</span>, <span className="text-slate-900 dark:text-white font-semibold">Angular &amp; React full-stack ecosystems</span>, and <span className="text-slate-900 dark:text-white font-semibold">high-throughput Linux backend deployments</span>.
+            I'm <strong className="text-slate-900 dark:text-white font-bold">Hiryakos (Harry) Meles</strong> — a Senior Software Engineer at <span className="text-slate-900 dark:text-white font-semibold">Federal Housing Corporation (FHC)</span> &amp; Top-Rated talent. Specializing in <span className="text-slate-900 dark:text-white font-semibold">Frappe / ERPNext enterprise architecture</span>, <span className="text-slate-900 dark:text-white font-semibold">Angular &amp; React full-stack ecosystems</span>, and <span className="text-slate-900 dark:text-white font-semibold">high-throughput Linux backend deployments</span>.
           </motion.p>
 
-          {/* Call to Actions (Interactive Buttons) */}
+          {/* Streamlined Call to Actions (Interactive Buttons) */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
             className="flex flex-wrap items-center justify-center lg:justify-start gap-3 sm:gap-4 w-full"
           >
+            {/* Primary High-Contrast Explore Work Button */}
+            <a
+              href="#projects"
+              className="bg-electric-blue hover:bg-blue-600 text-white font-extrabold py-3.5 px-7 rounded-xl shadow-[0_4px_20px_rgba(37,99,235,0.4)] hover:shadow-[0_6px_25px_rgba(37,99,235,0.6)] transition-all duration-300 flex items-center gap-2 text-[14.5px] active:scale-95"
+            >
+              <span>Explore Enterprise Work</span>
+              <span>↓</span>
+            </a>
+
             {/* Upwork Direct Button */}
             <a
               href="https://www.upwork.com/freelancers/~01d887f4b877df25ac"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-emerald-500 hover:bg-emerald-400 text-black font-extrabold py-3 px-6 sm:py-3.5 sm:px-7 rounded-xl shadow-[0_4px_20px_rgba(16,185,129,0.35)] hover:shadow-[0_6px_25px_rgba(16,185,129,0.5)] transition-all duration-300 flex items-center gap-2 text-[14px] sm:text-[15px] active:scale-95"
+              className="bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black py-3.5 px-6 rounded-xl shadow-[0_4px_20px_rgba(16,185,129,0.3)] hover:shadow-[0_6px_25px_rgba(16,185,129,0.45)] transition-all duration-300 flex items-center gap-2 text-[14.5px] active:scale-95"
             >
               <span>Hire on Upwork</span>
-              <span className="text-xs font-mono font-bold px-1.5 py-0.5 rounded bg-black/20 text-black">100% JSS</span>
+              <span className="text-[11px] font-mono font-bold px-1.5 py-0.5 rounded bg-black/20 text-black">100% JSS</span>
               <span>↗</span>
             </a>
 
-            {/* Explore Projects */}
+            {/* Download Resume Button */}
             <a
-              href="#projects"
-              className="bg-electric-blue hover:bg-blue-600 text-white font-bold py-3 px-6 sm:py-3.5 sm:px-7 rounded-xl shadow-glow transition-all duration-300 flex items-center gap-2 text-[14px] sm:text-[15px] active:scale-95"
+              href={resume}
+              download="Hiryakos_Meles_Resume.pdf"
+              className="bg-white/80 hover:bg-white text-slate-800 dark:bg-white/10 dark:hover:bg-white/15 dark:text-white font-bold py-3.5 px-5 rounded-xl border border-slate-300 dark:border-white/15 transition-all text-[14px] flex items-center gap-2 active:scale-95 shadow-sm"
             >
-              <span>Explore Projects</span>
-              <span>↓</span>
+              <span>📄 CV (PDF)</span>
+            </a>
+          </motion.div>
+
+          {/* Integrated Social Channels Row (GitHub, LinkedIn, Telegram) */}
+          <div className="flex items-center justify-center lg:justify-start gap-3 mt-4 w-full text-xs font-mono text-slate-600 dark:text-slate-400">
+            <a
+              href="https://github.com/Heryakos"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 hover:text-slate-900 dark:hover:text-white transition-colors py-1 px-2.5 rounded-lg bg-slate-100 dark:bg-white/[0.04] border border-slate-200 dark:border-white/5"
+            >
+              <img src={git} alt="GitHub" className="w-3.5 h-3.5 object-contain" />
+              <span>@Heryakos</span>
             </a>
 
-            {/* LinkedIn Profile */}
             <a
               href="https://linkedin.com/in/heryakos"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-white hover:bg-slate-100 text-slate-800 dark:bg-white/10 dark:hover:bg-white/20 dark:text-white font-bold py-3 px-5 sm:py-3.5 sm:px-6 rounded-xl border border-slate-300 dark:border-white/15 transition-all duration-300 text-[14px] sm:text-[15px] flex items-center gap-2 active:scale-95 shadow-sm"
+              className="inline-flex items-center gap-1.5 hover:text-slate-900 dark:hover:text-white transition-colors py-1 px-2.5 rounded-lg bg-slate-100 dark:bg-white/[0.04] border border-slate-200 dark:border-white/5"
             >
-              <span>LinkedIn Profile ↗</span>
+              <span>💼</span>
+              <span>LinkedIn</span>
             </a>
 
-            {/* Download Resume */}
             <a
-              href={resume}
-              download="Hiryakos_Meles_Resume.pdf"
-              className="bg-transparent hover:bg-slate-200/60 dark:hover:bg-white/5 text-slate-700 dark:text-slate-300 font-semibold py-3 px-4 sm:py-3.5 sm:px-5 rounded-xl border border-slate-300 dark:border-white/10 transition-all text-[14px] sm:text-[15px] flex items-center gap-2 active:scale-95"
+              href="https://t.me/Hiryakos_Meles"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 hover:text-slate-900 dark:hover:text-white transition-colors py-1 px-2.5 rounded-lg bg-slate-100 dark:bg-white/[0.04] border border-slate-200 dark:border-white/5"
             >
-              <span>📄 Resume</span>
+              <span>✈️</span>
+              <span>Telegram</span>
             </a>
-          </motion.div>
+          </div>
 
           {/* Real Credibility Metrics Row */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="mt-10 pt-6 border-t border-slate-200 dark:border-white/10 grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-6 text-center lg:text-left w-full"
+            className="mt-8 pt-6 border-t border-slate-200 dark:border-white/10 grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-6 text-center lg:text-left w-full"
           >
             <div className="bg-white dark:bg-white/[0.02] p-3 rounded-lg border border-slate-200 dark:border-white/5 shadow-sm">
               <div className="text-2xl sm:text-3xl font-black font-mono text-slate-900 dark:text-white">3+ Years</div>
@@ -337,27 +415,52 @@ const Hero = () => {
           </motion.div>
         </div>
 
-        {/* Right Column: Interactive Live Architecture Console (5 Cols) */}
+        {/* Right Column: Live Interactive Developer Sandbox (5 Cols) */}
         <motion.div
           initial={{ opacity: 0, x: 30 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.7, delay: 0.2 }}
           className="lg:col-span-5 w-full flex flex-col"
         >
-          {/* Glass Console Container - Adapted to both Dark and Light Themes */}
+          {/* Glass Console Container */}
           <div className="w-full bg-[#0a0f1d] dark:bg-[#0d111c]/95 rounded-2xl border border-slate-800 dark:border-white/15 shadow-[0_20px_50px_rgba(0,0,0,0.4)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.7)] backdrop-blur-xl overflow-hidden flex flex-col">
             
             {/* Top Mac-Style Titlebar */}
-            <div className="px-4 py-3 bg-black/40 border-b border-white/10 flex items-center justify-between">
+            <div className="px-4 py-3 bg-black/50 border-b border-white/10 flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <span className="w-3 h-3 rounded-full bg-[#ff5f56] inline-block shadow-[0_0_6px_#ff5f56]" />
                 <span className="w-3 h-3 rounded-full bg-[#ffbd2e] inline-block shadow-[0_0_6px_#ffbd2e]" />
                 <span className="w-3 h-3 rounded-full bg-[#27c93f] inline-block shadow-[0_0_6px_#27c93f]" />
                 <span className="ml-2 text-[12px] font-mono text-slate-400 font-medium hidden sm:inline">
-                  hiryakos@fhc-master:~/production$
+                  hiryakos@production:~$
                 </span>
               </div>
+              
               <div className="flex items-center gap-2">
+                {/* Switch between Live Sandbox and Source Code */}
+                <div className="flex items-center bg-white/10 rounded-lg p-0.5 border border-white/10 text-[11px] font-mono">
+                  <button
+                    onClick={() => setViewMode("sandbox")}
+                    className={`px-2 py-0.5 rounded transition-all ${
+                      viewMode === "sandbox"
+                        ? "bg-electric-blue text-white font-bold"
+                        : "text-slate-400 hover:text-white"
+                    }`}
+                  >
+                    Interactive
+                  </button>
+                  <button
+                    onClick={() => setViewMode("code")}
+                    className={`px-2 py-0.5 rounded transition-all ${
+                      viewMode === "code"
+                        ? "bg-electric-blue text-white font-bold"
+                        : "text-slate-400 hover:text-white"
+                    }`}
+                  >
+                    Code
+                  </button>
+                </div>
+
                 <span className={`text-[10px] font-mono font-bold px-2 py-0.5 rounded-full border ${activeTab.badgeColor}`}>
                   {activeTab.badge}
                 </span>
@@ -384,83 +487,195 @@ const Hero = () => {
               })}
             </div>
 
-            {/* Active Tab Content Area */}
+            {/* Active Content Area */}
             <AnimatePresence mode="wait">
               <motion.div
-                key={activeTab.id}
-                initial={{ opacity: 0, y: 10 }}
+                key={`${activeTab.id}-${viewMode}`}
+                initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                transition={{ duration: 0.25 }}
+                exit={{ opacity: 0, y: -8 }}
+                transition={{ duration: 0.2 }}
                 className="p-4 sm:p-5 flex flex-col gap-4 text-left"
               >
-                {/* Tab Title & Header */}
-                <div className="flex items-center justify-between">
+                {/* Header Information */}
+                <div>
                   <h3 className="text-white text-[14px] sm:text-[15px] font-bold tracking-tight">
                     {activeTab.title}
                   </h3>
-                  <button
-                    onClick={handleCopyCode}
-                    className="text-[11px] font-mono px-2 py-1 rounded bg-white/10 hover:bg-white/20 text-slate-200 border border-white/10 transition-colors flex items-center gap-1"
-                    title="Copy code snippet"
-                  >
-                    <span>{copied ? "✓ Copied" : "📋 Copy"}</span>
-                  </button>
+                  <p className="text-slate-400 text-[12px] mt-0.5 font-sans">
+                    {activeTab.tagline}
+                  </p>
                 </div>
 
-                {/* Live Metrics Grid */}
-                <div className="grid grid-cols-2 gap-2">
-                  {activeTab.metrics.map((metric, i) => (
-                    <div
-                      key={i}
-                      className="p-2.5 rounded-lg bg-black/40 border border-white/10 flex flex-col"
+                {/* ── MODE 1: INTERACTIVE LIVE SANDBOX ── */}
+                {viewMode === "sandbox" && (
+                  <div className="space-y-4">
+                    
+                    {/* PayTaxi FinTech Simulator */}
+                    {activeTab.id === "paytaxi" && (
+                      <div className="bg-black/50 rounded-xl p-3.5 border border-white/10 space-y-3 font-mono">
+                        <div className="flex items-center justify-between text-xs">
+                          <span className="text-slate-400">Minibus Terminal:</span>
+                          <span className="text-emerald-400 font-bold">{soundboxTxId} &bull; Bole &rarr; Mexico</span>
+                        </div>
+
+                        {/* Interactive Soundbox Chime Trigger */}
+                        <div className="p-3 rounded-lg bg-sky-950/40 border border-sky-500/30 flex items-center justify-between gap-3">
+                          <div>
+                            <div className="text-[11px] text-sky-300 font-bold">Driver Mobility Soundbox</div>
+                            <div className="text-[10px] text-slate-400">Web Audio API &bull; 587Hz &rarr; 880Hz Chime</div>
+                          </div>
+                          
+                          <button
+                            onClick={triggerSoundboxSimulation}
+                            disabled={soundboxStatus === "PLAYING"}
+                            className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all shadow-md active:scale-95 flex items-center gap-1.5 ${
+                              soundboxStatus === "PLAYING"
+                                ? "bg-amber-500 text-black animate-pulse"
+                                : "bg-emerald-500 hover:bg-emerald-400 text-black font-extrabold"
+                            }`}
+                          >
+                            <span>{soundboxStatus === "PLAYING" ? "🔊 Emitting Chime..." : "▶ Test 50 ETB Fare"}</span>
+                          </button>
+                        </div>
+
+                        {/* Live Anti-Fraud Dynamic Receipt Card */}
+                        <div className="p-3 rounded-lg bg-black/60 border border-white/10 space-y-2">
+                          <div className="flex items-center justify-between text-[11px]">
+                            <span className="text-slate-300">Weyala Anti-Fraud Receipt:</span>
+                            <span className="px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-400 font-bold text-[10px]">
+                              {soundboxStatus === "CONFIRMED" ? "PAID &bull; VERIFIED" : "WAITING FOR FARE"}
+                            </span>
+                          </div>
+
+                          <div className="flex items-center justify-between text-xs">
+                            <span className="text-slate-400">License Plate:</span>
+                            <span className="text-white font-bold bg-white/10 px-2 py-0.5 rounded">AA 3-B12345</span>
+                          </div>
+
+                          <div className="flex items-center justify-between text-xs">
+                            <span className="text-slate-400">Rolling Crypto Hash:</span>
+                            <span className="text-purple-400 font-mono text-[11px]">sha256:{soundboxHash}...</span>
+                          </div>
+
+                          <div className="flex items-center justify-between text-xs pt-1 border-t border-white/5">
+                            <span className="text-slate-500 text-[10px]">Broadcast Latency:</span>
+                            <span className="text-emerald-400 text-[10px]">38ms (Server-Sent Events)</span>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* FHC ERPNext Healthcare Pipeline */}
+                    {activeTab.id === "architecture" && (
+                      <div className="bg-black/50 rounded-xl p-3.5 border border-white/10 space-y-3 font-mono">
+                        <div className="flex items-center justify-between text-xs">
+                          <span className="text-slate-400">Doctype: FHC Clinic Visit</span>
+                          <span className="text-emerald-400 font-bold">Frappe v15 Hook</span>
+                        </div>
+
+                        {/* Workflow Stepper */}
+                        <div className="grid grid-cols-4 gap-1.5 text-center">
+                          {[
+                            { step: 1, label: "Patient Reg" },
+                            { step: 2, label: "Consultation" },
+                            { step: 3, label: "Rx Dispense" },
+                            { step: 4, label: "DB Commit" },
+                          ].map((s) => (
+                            <div
+                              key={s.step}
+                              className={`p-2 rounded-lg border text-[10.5px] transition-all ${
+                                erpStep >= s.step
+                                  ? "bg-emerald-500/20 border-emerald-500/50 text-emerald-300 font-bold"
+                                  : "bg-white/[0.02] border-white/10 text-slate-500"
+                              }`}
+                            >
+                              <div className="text-[9px] text-slate-400">0{s.step}</div>
+                              <div className="truncate">{s.label}</div>
+                              <div className="text-[9px] mt-0.5">
+                                {erpStep >= s.step ? "✓ Done" : "Pending"}
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+
+                        <div className="p-3 rounded-lg bg-black/60 border border-white/10 flex items-center justify-between gap-3">
+                          <div>
+                            <div className="text-[11px] text-slate-300 font-bold">State Machine Pipeline</div>
+                            <div className="text-[10px] text-slate-400">Step {erpStep} of 4: {erpStep === 4 ? "MariaDB Synced (18ms)" : "Executing Frappe Hook"}</div>
+                          </div>
+
+                          <button
+                            onClick={runErpWorkflow}
+                            disabled={isSimulatingErp}
+                            className="px-3 py-1.5 rounded-lg bg-electric-blue hover:bg-blue-600 text-white text-xs font-bold transition-all shadow-md active:scale-95 shrink-0"
+                          >
+                            <span>{isSimulatingErp ? "Executing..." : "▶ Simulate Flow"}</span>
+                          </button>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Linux DevOps Server Health */}
+                    {activeTab.id === "devops" && (
+                      <div className="bg-black/50 rounded-xl p-3.5 border border-white/10 space-y-3 font-mono">
+                        <div className="flex items-center justify-between text-xs">
+                          <span className="text-slate-400">Nginx Reverse Proxy:</span>
+                          <span className="text-emerald-400 font-bold">ACTIVE &bull; TLS 1.3 / HTTP2</span>
+                        </div>
+
+                        <div className="grid grid-cols-2 gap-2 text-xs">
+                          <div className="p-2.5 rounded-lg bg-black/60 border border-white/10">
+                            <span className="text-slate-400 text-[10px] block">MariaDB Queries:</span>
+                            <span className="text-white font-bold text-sm">240,000 / day</span>
+                            <span className="text-emerald-400 text-[10px] block mt-0.5">Cache Hit: 96.4%</span>
+                          </div>
+
+                          <div className="p-2.5 rounded-lg bg-black/60 border border-white/10">
+                            <span className="text-slate-400 text-[10px] block">Active Connections:</span>
+                            <span className="text-white font-bold text-sm">1,420 Active</span>
+                            <span className="text-emerald-400 text-[10px] block mt-0.5">Zero Packet Loss</span>
+                          </div>
+                        </div>
+
+                        <div className="p-2.5 rounded-lg bg-purple-950/30 border border-purple-500/20 text-[11px] text-slate-300 flex items-center justify-between">
+                          <span>Gunicorn Cluster (Frappe Backend):</span>
+                          <span className="text-emerald-400 font-bold">8 Workers Healthy</span>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                )}
+
+                {/* ── MODE 2: SOURCE CODE VIEW ── */}
+                {viewMode === "code" && (
+                  <div className="relative">
+                    <pre className="p-3.5 rounded-xl bg-black/60 border border-white/10 text-slate-300 font-mono text-[11px] sm:text-[12px] leading-relaxed overflow-x-auto max-h-[220px]">
+                      <code>{activeTab.codeSnippet}</code>
+                    </pre>
+
+                    <button
+                      onClick={handleCopyCode}
+                      className="absolute top-2 right-2 text-[10px] font-mono px-2 py-1 rounded bg-white/10 hover:bg-white/20 text-slate-200 border border-white/10 transition-colors"
+                      title="Copy code snippet"
                     >
-                      <span className="text-[10px] font-mono text-slate-400 uppercase tracking-wider">
-                        {metric.label}
-                      </span>
-                      <span className="text-[14px] font-mono font-bold text-white mt-0.5 flex items-center gap-1.5">
-                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                        {metric.value}
-                      </span>
-                    </div>
-                  ))}
-                </div>
+                      {copied ? "✓ Copied" : "📋 Copy"}
+                    </button>
+                  </div>
+                )}
 
-                {/* Syntax Code Preview */}
-                <div className="relative rounded-lg bg-[#050811] border border-white/10 p-3 overflow-x-auto text-[11px] sm:text-[12px] font-mono leading-relaxed text-slate-300">
-                  <pre className="whitespace-pre font-mono">
-                    <code>{activeTab.codeSnippet}</code>
-                  </pre>
-                </div>
-
-                {/* Terminal Footer Info */}
+                {/* Footer Specification Note */}
                 <div className="pt-2 border-t border-white/10 flex items-center justify-between text-[11px] font-mono text-slate-400">
                   <span className="truncate">{activeTab.footerNote}</span>
-                  <span className="text-emerald-400 font-bold shrink-0 ml-2">● Active</span>
+                  <span className="text-emerald-400 text-xs shrink-0 ml-2">● 99.98% Prod</span>
                 </div>
               </motion.div>
             </AnimatePresence>
           </div>
-
-          {/* Quick Sub-Console Feature Badges */}
-          <div className="mt-4 grid grid-cols-3 gap-2">
-            <div className="p-2 rounded-xl bg-white/70 dark:bg-white/[0.02] border border-slate-200 dark:border-white/5 text-center shadow-sm">
-              <span className="text-[11px] font-mono text-slate-500 dark:text-slate-400 block">DB Architecture</span>
-              <span className="text-[12px] font-bold text-slate-900 dark:text-white">MariaDB &amp; SQL</span>
-            </div>
-            <div className="p-2 rounded-xl bg-white/70 dark:bg-white/[0.02] border border-slate-200 dark:border-white/5 text-center shadow-sm">
-              <span className="text-[11px] font-mono text-slate-500 dark:text-slate-400 block">Framework</span>
-              <span className="text-[12px] font-bold text-slate-900 dark:text-white">Frappe / ERPNext</span>
-            </div>
-            <div className="p-2 rounded-xl bg-white/70 dark:bg-white/[0.02] border border-slate-200 dark:border-white/5 text-center shadow-sm">
-              <span className="text-[11px] font-mono text-slate-500 dark:text-slate-400 block">DevOps</span>
-              <span className="text-[12px] font-bold text-slate-900 dark:text-white">Linux &amp; Nginx</span>
-            </div>
-          </div>
         </motion.div>
       </div>
 
-      {/* Marquee Competency Ticker with Real Brand Logos */}
+      {/* Marquee Competency Ticker with Real Tech Logos */}
       <div className="w-full overflow-hidden whitespace-nowrap border-y border-slate-200 dark:border-white/10 py-3.5 mt-16 backdrop-blur-md bg-white/60 dark:bg-black/40 group">
         <div 
           className="inline-flex items-center gap-6 animate-marquee group-hover:[animation-play-state:paused]"

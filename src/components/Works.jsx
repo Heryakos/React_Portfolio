@@ -426,33 +426,24 @@ const CaseStudyModal = ({ project, onClose }) => {
 const Works = () => {
   const [selectedProject, setSelectedProject] = useState(null);
   const [activeFilter, setActiveFilter] = useState("all");
+  const [showLabs, setShowLabs] = useState(false);
 
   const categories = [
-    { id: "all", label: "All Projects" },
-    { id: "erp", label: "Enterprise ERPNext" },
+    { id: "all", label: "All Flagship Systems" },
+    { id: "erp", label: "ERPNext & Frappe" },
     { id: "fintech", label: "FinTech & Mobility" },
-    { id: "web", label: "Web Applications" },
+    { id: "fullstack", label: "Full-Stack Web" },
+    { id: "labs", label: "Labs & Experiments" },
   ];
 
   const filteredProjects = projects.filter((p) => {
-    if (activeFilter === "all") return true;
-    if (activeFilter === "erp")
-      return (
-        p.name.includes("ERP") ||
-        p.name.includes("FHC") ||
-        p.tags.some((t) => t.name.toLowerCase().includes("frappe"))
-      );
-    if (activeFilter === "fintech")
-      return (
-        p.name.includes("PayTaxi") ||
-        p.tags.some((t) => t.name.toLowerCase().includes("fintech"))
-      );
-    if (activeFilter === "web")
-      return (
-        p.name.includes("Game Hub") ||
-        p.name.includes("Commerce") ||
-        p.name.includes("Portfolio")
-      );
+    if (activeFilter === "all") {
+      return showLabs ? true : p.category !== "labs";
+    }
+    if (activeFilter === "erp") return p.category === "erp";
+    if (activeFilter === "fintech") return p.category === "fintech";
+    if (activeFilter === "fullstack") return p.category === "fullstack";
+    if (activeFilter === "labs") return p.category === "labs";
     return true;
   });
 
@@ -494,6 +485,18 @@ const Works = () => {
           />
         ))}
       </div>
+
+      {/* Optional Toggle for Experimental Labs */}
+      {activeFilter === "all" && (
+        <div className="flex justify-center mt-8">
+          <button
+            onClick={() => setShowLabs(!showLabs)}
+            className="px-5 py-2.5 rounded-full bg-slate-100 dark:bg-white/[0.04] hover:bg-slate-200 dark:hover:bg-white/10 text-slate-700 dark:text-slate-300 border border-slate-300 dark:border-white/10 text-[12.5px] font-mono font-semibold transition-all flex items-center gap-2 active:scale-95 shadow-sm"
+          >
+            <span>{showLabs ? "▲ Hide Experimental Labs" : "▼ View 2 Experimental Mini-Apps (Game Hub, Tic-Tac-Toe)"}</span>
+          </button>
+        </div>
+      )}
 
       <AnimatePresence>
         {selectedProject && (

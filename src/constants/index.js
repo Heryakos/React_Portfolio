@@ -175,7 +175,7 @@ export const technologies = [
 export const experiences = [
   {
     title: "Software Developer",
-    company_name: "Federal Housing Corporation (Addis Ababa, Mexico)",
+    company_name: "Federal Housing Corporation (Addis Ababa, Ethiopia)",
     icon: Angular,
     iconBg: "#383E56",
     date: "04/2025 – Present",
@@ -244,6 +244,7 @@ export const testimonials = [
 
 export const projects = [
   {
+    category: "fintech",
     name: "PayTaxi Ethiopia — Contactless Minibus Mobility & Soundbox",
     client: "Urban Transit FinTech",
     description:
@@ -280,6 +281,7 @@ export const projects = [
     live_demo_link: "https://pay-taxi-ethiopia.vercel.app",
   },
   {
+    category: "erp",
     name: "FHC ERP & Clinic Management System",
     client: "Federal Housing Corporation",
     description:
@@ -299,6 +301,7 @@ export const projects = [
     live_demo_link: "fhcerp.efhc.gov.et/app/fhc-clinic",
   },
   {
+    category: "erp",
     name: "Enterprise Legal Case Management System",
     description:
       "A comprehensive Legal Case Management module built on the Frappe Framework. It automates the tracking of court cases, legal documents, hearings, and judgments for the Federal Housing Corporation.",
@@ -317,6 +320,7 @@ export const projects = [
     live_demo_link: "fhcerp.efhc.gov.et/app",
   },
   {
+    category: "erp",
     name: "FHC SMS Broadcast System",
     client: "Federal Housing Corporation",
     description:
@@ -342,6 +346,7 @@ export const projects = [
     live_demo_link: "http://fhcerp.efhc.gov.et/app/fhc-send-sms",
   },
   {
+    category: "labs",
     name: "Game Hub - Gaming Platform",
     client: "RAWG API Discovery",
     description:
@@ -356,6 +361,7 @@ export const projects = [
     live_demo_link: "https://hiryakos-game-hub.vercel.app/",
   },
   {
+    category: "fullstack",
     name: "Enterprise Server Solutions 3D",
     client: "IT Infrastructure 3D",
     description:
@@ -370,6 +376,7 @@ export const projects = [
     live_demo_link: "https://ak-3d-company-portfolio.vercel.app/",
   },
   {
+    category: "fullstack",
     name: "E-Commerce Ecosystem",
     client: "Senan Retail Ecosystem",
     description:
@@ -391,6 +398,7 @@ export const projects = [
     live_demo_link: "https://e-commerce-senan.vercel.app/dashboard",
   },
   {
+    category: "labs",
     name: "Tic-Tac-Toe Strategy Game (5x5)",
     client: "Interactive Web App",
     description:

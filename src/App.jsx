@@ -12,7 +12,6 @@ import {
   Services,
   WhyChooseMe,
   GithubStats,
-  Blog,
   Preloader,
 } from "./components";
 import Footer from "./components/Footer";
@@ -128,6 +127,36 @@ const App = () => {
         <div className="relative z-0">
           <Contact />
           <StarsCanvas />
+        </div>
+
+        {/* Floating Mobile Action Dock (Only on phones) */}
+        <div className="md:hidden fixed bottom-3 left-3 right-3 z-40 bg-slate-900/95 dark:bg-black/95 backdrop-blur-xl border border-white/15 rounded-2xl p-2 shadow-[0_8px_30px_rgba(0,0,0,0.5)] flex items-center justify-between gap-2 pointer-events-auto">
+          <a
+            href="https://www.upwork.com/freelancers/~01d887f4b877df25ac"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex-1 py-2 px-2.5 rounded-xl bg-emerald-500 text-black font-extrabold text-[12px] text-center shadow-sm flex items-center justify-center gap-1 active:scale-95"
+          >
+            <span>Hire Me</span>
+            <span className="text-[10px] font-mono px-1 rounded bg-black/20">100%</span>
+            <span>↗</span>
+          </a>
+
+          <a
+            href="#projects"
+            className="flex-1 py-2 px-2.5 rounded-xl bg-electric-blue text-white font-bold text-[12px] text-center shadow-sm flex items-center justify-center gap-1 active:scale-95"
+          >
+            <span>Projects</span>
+            <span>↓</span>
+          </a>
+
+          <a
+            href="#contact"
+            className="py-2 px-3 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold text-[12px] text-center border border-white/10 flex items-center justify-center active:scale-95"
+            title="Jump to Contact"
+          >
+            <span>💬</span>
+          </a>
         </div>
 
         <Footer />

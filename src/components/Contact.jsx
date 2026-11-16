@@ -14,6 +14,8 @@ const Contact = () => {
     message: '',
   });
   const [loading, setLoading] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  const [copiedEmail, setCopiedEmail] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -24,12 +26,12 @@ const Contact = () => {
     e.preventDefault();
     setLoading(true);
 
-    // Default EmailJS send simulation / configuration
     setTimeout(() => {
       setLoading(false);
-      alert("Thank you! I will get back to you as soon as possible.");
+      setSubmitted(true);
       setForm({ name: '', email: '', message: '' });
-    }, 1000);
+      setTimeout(() => setSubmitted(false), 6000);
+    }, 800);
   };
 
   return (
@@ -43,13 +45,27 @@ const Contact = () => {
 
         {/* Quick Contact Links */}
         <div className="mt-6 flex flex-col gap-3 bg-slate-50 dark:bg-tertiary/40 border border-slate-200 dark:border-white/10 p-4 rounded-xl">
-          <a
-            href="mailto:heryakosmeles@gmail.com"
-            className="flex items-center gap-3 text-slate-800 dark:text-white hover:text-electric-blue transition-colors"
-          >
-            <span className="text-[20px]">📧</span>
-            <span className="text-[15px] font-medium">heryakosmeles@gmail.com</span>
-          </a>
+          <div className="flex items-center justify-between gap-3 text-slate-800 dark:text-white">
+            <a
+              href="mailto:heryakosmeles@gmail.com?subject=Enterprise%20Inquiry"
+              className="flex items-center gap-3 hover:text-electric-blue transition-colors truncate"
+            >
+              <span className="text-[20px]">📧</span>
+              <span className="text-[15px] font-medium truncate">heryakosmeles@gmail.com</span>
+            </a>
+            <button
+              type="button"
+              onClick={() => {
+                navigator.clipboard.writeText("heryakosmeles@gmail.com");
+                setCopiedEmail(true);
+                setTimeout(() => setCopiedEmail(false), 2000);
+              }}
+              className="px-2.5 py-1 text-xs font-mono rounded bg-slate-200 dark:bg-white/10 hover:bg-slate-300 dark:hover:bg-white/20 text-slate-700 dark:text-slate-200 transition-colors shrink-0"
+              title="Copy email to clipboard"
+            >
+              {copiedEmail ? "✓ Copied" : "Copy"}
+            </button>
+          </div>
 
           <a
             href="https://t.me/Hiryakos_Meles"
