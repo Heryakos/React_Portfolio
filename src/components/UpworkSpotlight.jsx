@@ -279,7 +279,7 @@ const UpworkSpotlight = () => {
         {/* ── CARD 3: GITHUB VERIFIED ENGINEERING PROFILE ── */}
         <motion.div
           variants={fadeIn("up", "spring", 0.3, 0.75)}
-          className="relative bg-white dark:bg-gradient-to-br dark:from-[#180d2a]/95 dark:via-[#0c0817]/95 dark:to-[#140b22]/90 backdrop-blur-xl border border-slate-200 dark:border-purple-500/25 hover:border-purple-400/80 rounded-3xl p-6 sm:p-7 shadow-sm dark:shadow-card hover:shadow-[0_12px_36px_rgba(147,51,234,0.16)] transition-all duration-300 flex flex-col justify-between overflow-hidden group"
+          className="md:col-span-2 lg:col-span-1 relative bg-white dark:bg-gradient-to-br dark:from-[#180d2a]/95 dark:via-[#0c0817]/95 dark:to-[#140b22]/90 backdrop-blur-xl border border-slate-200 dark:border-purple-500/25 hover:border-purple-400/80 rounded-3xl p-6 sm:p-7 shadow-sm dark:shadow-card hover:shadow-[0_12px_36px_rgba(147,51,234,0.16)] transition-all duration-300 flex flex-col justify-between overflow-hidden group"
         >
           {/* Ambient Glow */}
           <div className="absolute -top-24 -right-24 w-52 h-52 bg-purple-500/10 rounded-full blur-3xl pointer-events-none group-hover:bg-purple-500/20 transition-all duration-500" />
